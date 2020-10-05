@@ -1,5 +1,5 @@
 # convert these to object files if compile time becomes an issue
-OBJS=RenderedObject.cpp Background.cpp CollisionObject.cpp Floor.cpp Collectible.cpp Platform.cpp PhysicsObject.cpp Player.cpp Enemy.cpp
+OBJS=Scene.cpp RenderedObject.cpp Background.cpp CollisionObject.cpp Floor.cpp Collectible.cpp Platform.cpp PhysicsObject.cpp Player.cpp Enemy.cpp
 
 FLAGS=-std=c++11 -Wall
 
