@@ -1,5 +1,5 @@
 #include "Floor.h"
-#include <iostream>
+#include <ncurses.h>
 
 Floor::Floor(int left_x, int right_x, int y)
     : left_x(left_x)
@@ -17,6 +17,7 @@ void Floor::collide(PhysicsObject *obj) {
 }
 
 void Floor::render() {
-    std::cout << "floor from " << left_x << " to " << right_x;
-    std::cout << " at y " << y << std::endl;
+    for (int i = left_x; i <= right_x; i++) {
+        mvprintw(y, i, "#");
+    }
 }

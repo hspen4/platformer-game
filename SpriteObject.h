@@ -5,7 +5,7 @@
 
 class SpriteObject : public RenderedObject {
 private:
-    char sprite;
+    char sprite[2];
 protected:
     int x;
     int y;

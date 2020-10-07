@@ -1,16 +1,19 @@
 #include "SpriteObject.h"
-#include <iostream>
+#include <ncurses.h>
 
 SpriteObject::SpriteObject(char sprite, int x, int y)
-    : sprite(sprite)
-    , x(x)
+    : x(x)
     , y(y)
-{}
+{
+
+	this->sprite[0] = sprite;
+	this->sprite[1] = '\0';
+
+}
 
 // TODO - ncurses
 void SpriteObject::render() {
-    std::cout << "object " << sprite
-              << " at (" << x << ", " << y << ")" << std::endl;
+	mvprintw(y, x, sprite);
 }
 
 int SpriteObject::get_x() { return x; }

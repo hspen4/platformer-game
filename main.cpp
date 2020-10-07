@@ -22,11 +22,15 @@ int main (void) {
     scene.new_floor(0, 5, 0);
 
     for (int i = 0; i < 5; i++) {
-        std::cout << std::endl << "next tick" << std::endl;
+        printw("next tick");
+        int x, y;
+        getyx(stdscr, y, x);
+        move(y - 1, x);
         scene.tick();
+        getch();
     }
 
-    return 0;
-
     endwin();
+
+    return 0;
 }
