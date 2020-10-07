@@ -3,6 +3,7 @@
 
 #include "RenderedObject.h"
 #include "PhysicsObject.h"
+#include "Floor.h"
 #include <vector>
 
 /**
@@ -14,6 +15,7 @@ private:
     // every object
     std::vector<RenderedObject*> objects;
     std::vector<PhysicsObject*> physics_objects;
+    std::vector<Floor*> floors;
 public:
     Scene();
     ~Scene();
@@ -23,6 +25,7 @@ public:
 
     void new_sprite(char sprite, int x = 0, int y = 0);
     void new_physics(char sprite, int x = 0, int y = 0);
+    void new_floor(int left_x, int right_x, int y);
     void tick();
 };
 

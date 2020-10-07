@@ -7,7 +7,6 @@
 #include <ncurses.h>
 
 int main (void) {
-
     initscr();
     cbreak();
     keypad(stdscr, true);
@@ -16,12 +15,11 @@ int main (void) {
     int maxY, maxX;
 
     getmaxyx(stdscr, maxY, maxX);
-    
+
     Scene scene;
-    // create 3 objects with random position
-    for (auto c : {'!', '#', '@'}) {
-        scene.new_physics(c, rand() % 5, rand() % 5);
-    }
+
+    scene.new_physics('@', 1, 5);
+    scene.new_floor(0, 5, 0);
 
     for (int i = 0; i < 5; i++) {
         std::cout << std::endl << "next tick" << std::endl;

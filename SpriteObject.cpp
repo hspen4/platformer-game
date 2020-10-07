@@ -13,3 +13,8 @@ void SpriteObject::render() {
               << " at (" << x << ", " << y << ")" << std::endl;
 }
 
+int SpriteObject::get_x() { return x; }
+int SpriteObject::get_y() { return y; }
+
+void SpriteObject::set_x(int _x) { x = _x; }
+void SpriteObject::set_y(int _y) { y = _y; }
