@@ -9,8 +9,8 @@ Scene::~Scene() {
     physics_objects.clear();
 }
 
-void Scene::new_rendered(char sprite, int x, int y) {
-    RenderedObject *obj = new RenderedObject(sprite, x, y);
+void Scene::new_sprite(char sprite, int x, int y) {
+    RenderedObject *obj = new SpriteObject(sprite, x, y);
     objects.push_back(obj);
 }
 void Scene::new_physics(char sprite, int x, int y) {

@@ -1,12 +1,12 @@
 #ifndef COLLISIONOBJECT_H
 #define COLLISIONOBJECT_H
 
-#include "RenderedObject.h"
+#include "SpriteObject.h"
 
-class CollisionObject : public RenderedObject {
+class CollisionObject : public SpriteObject {
 public:
     // inherit ctors
-    using RenderedObject::RenderedObject;
+    using SpriteObject::SpriteObject;
     // TODO - collisions
 };
 

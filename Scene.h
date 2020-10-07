@@ -21,7 +21,7 @@ public:
     Scene(const Scene &other) = delete; // copy ctor
     void operator=(const Scene &other) = delete; // copy assignment
 
-    void new_rendered(char sprite, int x = 0, int y = 0);
+    void new_sprite(char sprite, int x = 0, int y = 0);
     void new_physics(char sprite, int x = 0, int y = 0);
     void tick();
 };

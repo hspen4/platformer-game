@@ -1,16 +1,13 @@
 #ifndef RENDEREDOBJECT_H
 #define RENDEREDOBJECT_H
 
+/**
+ * root object class, and interface for rendering
+ */
 class RenderedObject {
-private:
-    char sprite;
-protected:
-    int x;
-    int y;
 public:
-    RenderedObject(char sprite, int x = 0, int y = 0);
-    virtual ~RenderedObject() = default;
-    virtual void render();
+    virtual void render() = 0;
+    virtual ~RenderedObject() {}
 };
 
 #endif
