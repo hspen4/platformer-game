@@ -4,8 +4,19 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <ncurses.h>
 
 int main (void) {
+
+    initscr();
+    cbreak();
+    keypad(stdscr, true);
+    noecho();
+
+    int maxY, maxX;
+
+    getmaxyx(stdscr, maxY, maxX);
+    
     Scene scene;
     // create 3 objects with random position
     for (auto c : {'!', '#', '@'}) {
@@ -18,4 +29,6 @@ int main (void) {
     }
 
     return 0;
+
+    endwin();
 }
