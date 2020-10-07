@@ -19,7 +19,7 @@ int main (void) {
     Scene scene;
 
     scene.new_physics('@', 1, 5);
-    scene.new_floor(0, 5, 0);
+    scene.new_floor(0, 5, 10);
 
     for (int i = 0; i < 5; i++) {
         printw("next tick");
