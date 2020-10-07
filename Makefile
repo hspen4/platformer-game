@@ -1,7 +1,8 @@
 # convert these to object files if compile time becomes an issue
 OBJS=Scene.cpp RenderedObject.cpp SpriteObject.cpp Background.cpp CollisionObject.cpp Floor.cpp Collectible.cpp Platform.cpp PhysicsObject.cpp Player.cpp Enemy.cpp
 
-FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable
+# clang doesn't support unused-but-set-variable
+FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option
 
 INCLUDES=-lncurses
 
