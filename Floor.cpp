@@ -12,7 +12,7 @@ void Floor::collide(PhysicsObject *obj) {
     if (obj->get_x() < left_x || obj->get_x() > right_x) return;
 
     // the object's inside the floor, push it upwards
-    int new_y = obj->get_y() + 1;
+    int new_y = obj->get_y() - 1;
     obj->set_y(new_y);
 }
 

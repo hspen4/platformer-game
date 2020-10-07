@@ -6,6 +6,7 @@
 
 class Floor : public RenderedObject {
 private:
+    // left and right sides, inclusive
     int left_x;
     int right_x;
     int y;
