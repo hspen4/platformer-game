@@ -7,27 +7,28 @@
 #include <ncurses.h>
 
 int main (void) {
+    // set up curses options
     initscr();
     cbreak();
     keypad(stdscr, true);
-    noecho();
+    //noecho();
+    nodelay(stdscr, true);
 
+    // get size of screen
     int maxY, maxX;
-
     getmaxyx(stdscr, maxY, maxX);
 
     Scene scene;
 
-    scene.new_physics('@', 1, 5);
-    scene.new_floor(0, 5, 10);
+    scene.new_player('@', 1, 5);
+    scene.new_floor(0, maxX, 10);
 
-    for (int i = 0; i < 5; i++) {
-        printw("next tick");
-        int x, y;
-        getyx(stdscr, y, x);
-        move(y - 1, x);
+ 
+
+    while (1) {
         scene.tick();
-        getch();
+        refresh();
+
     }
 
     endwin();
