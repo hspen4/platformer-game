@@ -9,28 +9,28 @@ void PhysicsObject::tick() {
     if (getTick() >= getTickLimit()) {
         resetTick();
         // hold old location
-        if (yMomentum != 0 || xMomentum != 0 || y != 9) {
+        if (getYMomentum() != 0 || getXMomentum() != 0 || y != 9) {
             oldY = y;
             oldX = x;
         }
 
         // apply gravity only if not moving up
-        if (yMomentum >= 0 && y<9) {
+        if (getYMomentum() >= 0 && y<9) {
             //usleep(1000000);
             y = y + 1;
-        }  else if (y > 0 && yMomentum != 0) {
+        }  else if (y > 0 && getYMomentum() != 0) {
             // decrement momentum and move up
-            yMomentum++;
+            setYMomentum(getYMomentum() + 1);
             y--;
         }
 
         // apply any left and right momentum
-        if (xMomentum > 0) {
+        if (getXMomentum() > 0) {
             x++;
-            xMomentum--;
-        } else if (xMomentum < 0) {
+            setXMomentum(getXMomentum() - 1);
+        } else if (getXMomentum() < 0) {
             x--;
-            xMomentum++;
+            setXMomentum(getXMomentum() + 1);
         }
 
         render();
@@ -40,10 +40,10 @@ void PhysicsObject::tick() {
 
 PhysicsObject::PhysicsObject(char sprite, int x, int y)
     : CollisionObject::CollisionObject(sprite, x, y)
-    , yMomentum(0)
-    , xMomentum(0)
     , tickCount(0)
     , tickLimit(30)
+    , yMomentum(0)
+    , xMomentum(0)
 {}
 
 // render object and remove from previous location
@@ -71,4 +71,32 @@ int PhysicsObject::getTickLimit() {
 // reset tick count
 void PhysicsObject::resetTick() {
     tickCount = 0;
+}
+
+// denote object as grounded or ungrounded
+void PhysicsObject::setGrounded(bool grounded) {
+    onGround = grounded;
+}
+
+// check if object grounded
+bool PhysicsObject::grounded() {
+    return onGround;
+}
+
+// get and set momentum
+
+int PhysicsObject::getYMomentum() {
+    return yMomentum;
+}
+
+void PhysicsObject::setYMomentum(int val) {
+    yMomentum = val;
+}
+
+int PhysicsObject::getXMomentum() {
+    return xMomentum;
+}
+
+void PhysicsObject::setXMomentum(int val) {
+    xMomentum = val;
 }

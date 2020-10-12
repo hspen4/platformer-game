@@ -16,17 +16,18 @@ void Player::input() {
 	    switch (key) {
 			case 'W':
 			case KEY_UP:
-			    if (yMomentum == 0 && y > 8) {
-				yMomentum = -3;
+			    if (grounded()) {
+					setYMomentum(-3);
+					setGrounded(false); // object moving up
 			    }
 			    break;
 			case 'A':
 			case KEY_LEFT:
-				xMomentum = -1;
+				setXMomentum(-1);
 			    break;
 			case 'D':
 			case KEY_RIGHT:
-				xMomentum = 1;
+				setXMomentum(1);
 			    break;
 		    }
 	}

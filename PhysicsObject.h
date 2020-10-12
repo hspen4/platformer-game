@@ -13,16 +13,25 @@ public:
     void resetTick();
     int getTick();
     int getTickLimit();
+    bool grounded();
+    void setGrounded(bool);
+    int getYMomentum();
+    void setYMomentum(int);
+    int getXMomentum();
+    void setXMomentum(int);
 
 protected:
-    // for applying movement from arrow keys
-    int yMomentum;
-    int xMomentum;
     // old location for cleaning
     int oldY, oldX;
     // count when to tick physics
     int tickCount;
     const int tickLimit;
+
+private:
+    // apply momentum from arrow keys
+    int yMomentum;
+    int xMomentum;
+    bool onGround; // check if object on ground
 };
 
 #endif
