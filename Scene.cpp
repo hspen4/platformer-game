@@ -72,5 +72,7 @@ void Scene::remove_object(RenderedObject *obj) {
    objects.erase(std::remove(objects.begin(), objects.end(), obj), objects.end());
    collision_objects.erase(std::remove(collision_objects.begin(), collision_objects.end(), static_cast<CollisionObject*>(obj)), collision_objects.end());
    physics_objects.erase(std::remove(physics_objects.begin(), physics_objects.end(), static_cast<PhysicsObject*>(obj)), physics_objects.end());
+   delete obj;
 }
+
 
