@@ -22,7 +22,7 @@ void Player::input() {
 			xMomentum++;
 			break;
 	}
-	
+
 	while (getch() != ERR); // clear buffer
 
 }
@@ -32,3 +32,7 @@ void Player::tick() {
 	PhysicsObject::tick();
 	input();
 }
+
+// we only have one player, so this should never get called or do anything
+bool Player::check_collision(Player *p) { return false; }
+bool Player::collide(Player *p) { return false; }

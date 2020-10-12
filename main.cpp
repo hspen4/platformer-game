@@ -21,9 +21,10 @@ int main (void) {
     Scene scene;
 
     scene.new_player('@', 1, 5);
+    scene.new_collision('!', 2, 9);
     scene.new_floor(0, maxX, 10);
 
- 
+
 
     while (1) {
         scene.tick();
