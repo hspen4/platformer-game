@@ -9,13 +9,13 @@ void PhysicsObject::tick() {
     if (getTick() >= getTickLimit()) {
         resetTick();
         // hold old location
-        if (getYMomentum() != 0 || getXMomentum() != 0 || y != 9) {
+        if (!grounded() || getXMomentum() != 0) {
             oldY = y;
             oldX = x;
         }
 
         // apply gravity only if not moving up
-        if (getYMomentum() >= 0 && y<9) {
+        if (getYMomentum() >= 0 && !grounded()) {
             //usleep(1000000);
             y = y + 1;
         }  else if (y > 0 && getYMomentum() != 0) {
@@ -24,11 +24,15 @@ void PhysicsObject::tick() {
             y--;
         }
 
+        // screen size
+        int maxY, maxX;
+        getmaxyx(stdscr, maxY, maxX);
+
         // apply any left and right momentum
-        if (getXMomentum() > 0) {
+        if (getXMomentum() > 0 && x < maxX) {
             x++;
             setXMomentum(getXMomentum() - 1);
-        } else if (getXMomentum() < 0) {
+        } else if (getXMomentum() < 0 && x > 0) {
             x--;
             setXMomentum(getXMomentum() + 1);
         }
@@ -84,7 +88,6 @@ bool PhysicsObject::grounded() {
 }
 
 // get and set momentum
-
 int PhysicsObject::getYMomentum() {
     return yMomentum;
 }

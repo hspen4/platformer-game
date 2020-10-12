@@ -13,6 +13,7 @@ int main (void) {
     keypad(stdscr, true);
     noecho();
     nodelay(stdscr, true);
+    curs_set(0);
 
     // get size of screen
     int maxY, maxX;
