@@ -43,7 +43,7 @@ PhysicsObject::PhysicsObject(char sprite, int x, int y)
     , yMomentum(0)
     , xMomentum(0)
     , tickCount(0)
-    , tickLimit(3)
+    , tickLimit(30)
 {}
 
 // render object and remove from previous location

@@ -46,7 +46,7 @@ void Scene::new_floor(int left_x, int right_x, int y) {
 
 void Scene::tick() {
    for (auto obj : physics_objects) {
-      usleep(30000);
+      usleep(3000);
       obj->tick();
       for (auto floor : floors) {
          floor->collide(obj);

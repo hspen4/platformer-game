@@ -11,7 +11,7 @@ int main (void) {
     initscr();
     cbreak();
     keypad(stdscr, true);
-    //noecho();
+    noecho();
     nodelay(stdscr, true);
 
     // get size of screen
