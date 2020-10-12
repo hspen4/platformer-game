@@ -4,12 +4,9 @@
 #include <vector>
 
 // gets user input
+// parse input
+
 void Player::input() {
-	std::vector <int> keys;
-	int key;
-	while ((key = getch()) != ERR) {
-		keys.push_back(key); // get non-blocking input if available
-	}
 
     // apply momentum based on keys
     for (auto key : keys) {
@@ -40,6 +37,11 @@ void Player::tick() {
 	PhysicsObject::tick();
 	input();
 }
+
+// set keys
+void Player::setKeys(std::vector <int> newKeys) {
+	keys = newKeys;
+} 
 
 // we only have one player, so this should never get called or do anything
 bool Player::check_collision(Player *p) { return false; }

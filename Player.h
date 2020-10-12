@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "PhysicsObject.h"
+#include <vector>
 
 class Player : public PhysicsObject {
 public:
@@ -11,8 +12,10 @@ public:
     void tick() override;
     bool check_collision(Player *p) override;
     bool collide(Player *p) override;
+    void setKeys(std::vector <int>); // pass user input to class
 private:
-    void input(); // gets user input
+    void input(); // parse user input
+    std::vector <int> keys; // hold user input
 };
 
 #endif

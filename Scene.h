@@ -33,7 +33,7 @@ public:
     void new_physics(char sprite, int x = 0, int y = 0);
     void new_floor(int left_x, int right_x, int y);
     void new_player(char sprite, int x = 0, int y = 0);
-    void tick();
+    void tick(std::vector <int>);
 };
 
 #endif

@@ -23,12 +23,17 @@ int main (void) {
 
     scene.new_player('@', 1, 5);
     scene.new_collision('!', 2, 9);
-    scene.new_floor(0, maxX, 10);
-
-
+    scene.new_floor(0, maxX, maxY - 1);
 
     while (1) {
-        scene.tick();
+        // get keys pressed on each tick
+        std::vector <int> keys;
+        int key;
+        while ((key = getch()) != ERR) {
+            keys.push_back(key); // get non-blocking input if available
+        }
+
+        scene.tick(keys);
         refresh();
 
     }

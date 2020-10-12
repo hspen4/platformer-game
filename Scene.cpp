@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <unistd.h>
 #include <ncurses.h>
+#include <vector>
 
 Scene::Scene() : player(nullptr) {}
 Scene::~Scene() {
@@ -44,9 +45,10 @@ void Scene::new_floor(int left_x, int right_x, int y) {
    floors.push_back(floor);
 }
 
-void Scene::tick() {
+void Scene::tick(std::vector <int> keys) {
+   usleep(3000);
+   player->setKeys(keys); // pass user input to player object
    for (auto obj : physics_objects) {
-      usleep(3000);
       obj->tick();
       for (auto floor : floors) {
          floor->collide(obj);
