@@ -14,7 +14,6 @@ void Player::input() {
 			case KEY_UP:
 			    if (grounded()) {
 					set_momentum_y(-3);
-					set_grounded(false); // object moving up
 			    }
 			    break;
 			case 'A':
@@ -28,7 +27,7 @@ void Player::input() {
 		    }
 	}
 
-    //while (getch() != ERR); // clear buffer
+    set_grounded(false); // reset grounded
 }
 
 // add user input to tick method

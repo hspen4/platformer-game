@@ -13,6 +13,7 @@ private:
 public:
     Floor(int left_x, int right_x, int y);
     void collide(PhysicsObject *obj);
+    void check_grounded(PhysicsObject *obj);
     void render() override;
 };
 
