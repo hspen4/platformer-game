@@ -1,6 +1,7 @@
 #include "../PhysicsObject.h"
 #include "../Floor.h"
 #include "assert.h"
+#include <iostream>
 
 void floors() {
     Floor f(0, 10, 5);
@@ -33,13 +34,11 @@ void floors() {
 
     // move p to the right, they should start falling
     p.set_momentum_x(2);
-    for (int i = 0; i <= p.get_tick_limit(); i++) p.tick();
-    f.collide(&p);
-    for (int i = 0; i <= p.get_tick_limit(); i++) p.tick();
-    f.collide(&p);
-    for (int i = 0; i <= p.get_tick_limit(); i++) p.tick();
-    f.collide(&p);
-
+    for (int i = 0; i < 3; i++) {
+        for (int i = 0; i <= p.get_tick_limit(); i++) p.tick();
+        //std::cout << p.get_x() << " " << p.get_y() << " " << p.grounded() << " " << p.get_momentum_y() << std::endl;
+        f.collide(&p);
+    }
     assertm(p.get_y() > 4, "falling after walking off a platform");
     assertm(p.grounded() == false, "falling after walking off a platform");
 }
