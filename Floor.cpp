@@ -14,16 +14,11 @@ void Floor::collide(PhysicsObject *obj) {
             int new_y = obj->get_y() - 1;
             obj->set_y(new_y);
         }
-    }
-    return;
-}
-
-void Floor::check_grounded(PhysicsObject *obj) {
-    if (obj->get_y() == (y - 1) && obj->get_momentum_y() == 0) {
-            if (obj->get_x() >= left_x && obj->get_x() <= right_x) {
-                // object is grounded, set status
-                obj->set_grounded(true);
-            }
+    } else if (obj->get_y() == (y - 1) && obj->get_momentum_y() == 0) {
+        if (obj->get_x() >= left_x && obj->get_x() <= right_x) {
+            // object is grounded, set status
+            obj->set_grounded(true);
+        }
     }
     return;
 }

@@ -27,13 +27,12 @@ void Player::input() {
 		    }
 	}
 
-    set_grounded(false); // reset grounded
 }
 
 // add user input to tick method
 void Player::tick() {
-	PhysicsObject::tick();
 	input();
+	PhysicsObject::tick();
 }
 
 // set keys

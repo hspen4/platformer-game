@@ -9,7 +9,7 @@ void PhysicsObject::tick() {
     // check if physics should be applied and object rendered again this tick
     if (check_tick()) {
         // hold old location
-        if (!grounded() || get_momentum_x() != 0) {
+        if (!grounded() || get_momentum_y() != 0 || get_momentum_x() != 0) {
             old_y = y;
             old_x = x;
         }
@@ -32,6 +32,7 @@ void PhysicsObject::tick() {
             x--;
             set_momentum_x(get_momentum_x() + 1);
         }
+        set_grounded(false); // reset grounded
     }
 }
 

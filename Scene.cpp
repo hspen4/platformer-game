@@ -59,7 +59,6 @@ void Scene::tick(std::vector <int> keys) {
       obj->tick();
       for (auto floor : floors) {
          floor->collide(obj);
-         floor->check_grounded(obj);
       }
    }
 
