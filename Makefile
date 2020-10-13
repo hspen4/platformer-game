@@ -1,4 +1,3 @@
-# convert these to object files if compile time becomes an issue
 OBJS=Scene.o RenderedObject.o SpriteObject.o Background.o CollisionObject.o Floor.o Collectible.o Platform.o PhysicsObject.o Player.o Enemy.o
 # .objs/whatever.o
 OBJSPATHS=$(addprefix .objs/,$(OBJS))
