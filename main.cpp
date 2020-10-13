@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <ncurses.h>
 
+int maxX, maxY;
+
 int main (void) {
     // set up curses options
     initscr();

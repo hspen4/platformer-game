@@ -1,8 +1,12 @@
 #include <cassert>
 
+#include "physics.cpp"
+
 using namespace std;
+
+int maxX = 1000, maxY = 1000;
+
 int main() {
-    assert(true == true);
-    assert(true == false);
+    physics();
     return 0;
 }

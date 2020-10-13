@@ -2,6 +2,8 @@
 #include <ncurses.h>
 #include <unistd.h>
 
+// FIXME this is pretty terrible
+extern int maxX, maxY;
 
 void PhysicsObject::tick() {
     // check if physics should be applied and object rendered again this tick
@@ -23,10 +25,6 @@ void PhysicsObject::tick() {
             setYMomentum(getYMomentum() + 1);
             y--;
         }
-
-        // screen size
-        int maxY, maxX;
-        getmaxyx(stdscr, maxY, maxX);
 
         // apply any left and right momentum
         if (getXMomentum() > 0 && x < maxX) {

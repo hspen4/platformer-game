@@ -11,7 +11,6 @@ game: $(OBJSPATHS) main.cpp
 	$(CXX) $(FLAGS) -o game $(OBJSPATHS) main.cpp $(INCLUDES)
 
 test: $(OBJSPATHS) tests/*
-	# todo - write tests
 	$(CXX) $(FLAGS) -o test $(OBJSPATHS) tests/test.cpp $(INCLUDES)
 
 # build object files into their own directory
