@@ -7,9 +7,7 @@ extern int max_x, max_y;
 
 void PhysicsObject::tick() {
     // check if physics should be applied and object rendered again this tick
-    increment_tick();
-    if (get_tick() >= get_tick_limit()) {
-        reset_tick();
+    if (check_tick()) {
         // hold old location
         if (!grounded() || get_momentum_x() != 0) {
             old_y = y;
@@ -53,13 +51,17 @@ void PhysicsObject::render() {
 }
 
 // increment tick count that tracks if this object is to be updated
-void PhysicsObject::increment_tick() { tick_count++; }
-// get tick count
-int PhysicsObject::get_tick() { return tick_count; }
-// point at which to render object
+bool PhysicsObject::check_tick() {
+    tick_count++;
+    if (tick_count == tick_limit) {
+        // reset
+        tick_count = 0;
+        return true;
+    }
+    return false;
+}
+
 int PhysicsObject::get_tick_limit() { return tick_limit; }
-// reset tick count
-void PhysicsObject::reset_tick() { tick_count = 0; }
 
 // denote object as grounded or ungrounded
 void PhysicsObject::set_grounded(bool grounded) { on_ground = grounded; }

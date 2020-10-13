@@ -9,9 +9,6 @@ public:
     // called on every game tick - should apply momentum, gravity, etc
     virtual void tick();
     void render() override;
-    void increment_tick();
-    void reset_tick();
-    int get_tick();
     int get_tick_limit();
     bool grounded();
     void set_grounded(bool);
@@ -32,6 +29,7 @@ private:
     int momentum_y;
     int momentum_x;
     bool on_ground; // check if object on ground
+    bool check_tick(); // returns true if we should update
 };
 
 #endif
