@@ -18,7 +18,6 @@ int main (void) {
     curs_set(0);
 
     // get size of screen
-    int maxY, maxX;
     getmaxyx(stdscr, maxY, maxX);
 
     Scene scene;
