@@ -7,24 +7,23 @@
 // parse input
 
 void Player::input() {
-
     // apply momentum based on keys
     for (auto key : keys) {
 	    switch (key) {
 			case 'W':
 			case KEY_UP:
 			    if (grounded()) {
-					setYMomentum(-3);
-					setGrounded(false); // object moving up
+					set_momentum_y(-3);
+					set_grounded(false); // object moving up
 			    }
 			    break;
 			case 'A':
 			case KEY_LEFT:
-				setXMomentum(-1);
+				set_momentum_x(-1);
 			    break;
 			case 'D':
 			case KEY_RIGHT:
-				setXMomentum(1);
+				set_momentum_x(1);
 			    break;
 		    }
 	}
@@ -39,7 +38,7 @@ void Player::tick() {
 }
 
 // set keys
-void Player::setKeys(std::vector <int> newKeys) {
+void Player::set_keys(std::vector <int> newKeys) {
 	keys = newKeys;
 } 
 

@@ -1,12 +1,15 @@
-#include <cassert>
+#include <iostream>
 
 #include "physics.cpp"
 
 using namespace std;
 
-int maxX = 1000, maxY = 1000;
+int max_y = 1000, max_x = 1000;
 
 int main() {
+    cout << "running physics tests..." << endl;
     physics();
+
+    cout << "all tests passed" << endl;
     return 0;
 }

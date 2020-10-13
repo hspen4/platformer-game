@@ -15,7 +15,7 @@ test: $(OBJSPATHS) tests/*
 
 # build object files into their own directory
 .objs/%.o: %.cpp
-	$(CXX) $(FLAGS) -c -o $@ $< $(INCLUDES)
+	$(CXX) $(FLAGS) -c -o $@ $<
 
 .PHONY: clean
 clean:

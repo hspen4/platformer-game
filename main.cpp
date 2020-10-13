@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <ncurses.h>
 
-int maxX, maxY;
+int max_y, max_x;
 
 int main (void) {
     // set up curses options
@@ -18,13 +18,13 @@ int main (void) {
     curs_set(0);
 
     // get size of screen
-    getmaxyx(stdscr, maxY, maxX);
+    getmaxyx(stdscr, max_y, max_x);
 
     Scene scene;
 
     scene.new_player('@', 1, 5);
     scene.new_collision('!', 2, 9);
-    scene.new_floor(0, maxX, maxY - 1);
+    scene.new_floor(0, max_x, max_y - 1);
 
     while (1) {
         // get keys pressed on each tick

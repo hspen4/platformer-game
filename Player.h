@@ -12,7 +12,7 @@ public:
     void tick() override;
     bool check_collision(Player *p) override;
     bool collide(Player *p) override;
-    void setKeys(std::vector <int>); // pass user input to class
+    void set_keys(std::vector<int>); // pass user input to class
 private:
     void input(); // parse user input
     std::vector <int> keys; // hold user input
