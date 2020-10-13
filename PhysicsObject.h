@@ -16,6 +16,7 @@ public:
     void set_momentum_y(int);
     int get_momentum_x();
     void set_momentum_x(int);
+    bool collide(Player *) override;
 
 protected:
     // old location for cleaning

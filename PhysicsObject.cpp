@@ -61,6 +61,8 @@ bool PhysicsObject::check_tick() {
     return false;
 }
 
+bool PhysicsObject::collide(Player *p) { return true; }
+
 int PhysicsObject::get_tick_limit() { return tick_limit; }
 
 // denote object as grounded or ungrounded

@@ -3,6 +3,8 @@
 #include "PhysicsObject.h"
 #include "Floor.h"
 #include "Player.h"
+#include "Collectible.h"
+#include "End.h"
 #include <stdexcept>
 #include <algorithm>
 #include <unistd.h>
@@ -20,8 +22,13 @@ void Scene::new_sprite(char sprite, int x, int y) {
     RenderedObject *obj = new SpriteObject(sprite, x, y);
     objects.push_back(obj);
 }
-void Scene::new_collision(char sprite, int x, int y) {
-   CollisionObject *obj = new CollisionObject(sprite, x, y);
+void Scene::new_collectible(char sprite, int x, int y) {
+   CollisionObject *obj = new Collectible(sprite, x, y);
+   objects.push_back(obj);
+   collision_objects.push_back(obj);
+}  
+void Scene::new_end(char sprite, int x, int y) {
+   CollisionObject *obj = new End(sprite, x, y);
    objects.push_back(obj);
    collision_objects.push_back(obj);
 }

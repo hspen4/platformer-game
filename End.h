@@ -1,9 +1,9 @@
-#ifndef COLLECTIBLE_H
-#define COLLECTIBLE_H
+#ifndef END_H
+#define END_H
 
 #include "CollisionObject.h"
 
-class Collectible : public CollisionObject {
+class End : public CollisionObject {
 public:
 	// inherit constructors
 	using CollisionObject::CollisionObject;

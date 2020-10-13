@@ -16,8 +16,7 @@ public:
     // is this object colliding with the player?
     virtual bool check_collision(Player *p);
     // handle a collision
-    // return true to remove the CollisionObject from the scene afterwards
-    virtual bool collide(Player *p);
+    virtual bool collide(Player *p) = 0;
 };
 
 #endif
