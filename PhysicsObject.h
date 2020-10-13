@@ -2,6 +2,7 @@
 #define PHYSICSOBJECT_H
 
 #include "CollisionObject.h"
+#include "TickCounter.h"
 
 class PhysicsObject : public CollisionObject {
 public:
@@ -9,7 +10,6 @@ public:
     // called on every game tick - should apply momentum, gravity, etc
     virtual void tick();
     void render() override;
-    int get_tick_limit();
     bool grounded();
     void set_grounded(bool);
     int get_momentum_y();
@@ -17,14 +17,11 @@ public:
     int get_momentum_x();
     void set_momentum_x(int);
     bool collide(Player *) override;
-
+    TickCounter x_tick;
+    TickCounter y_tick;
 protected:
     // old location for cleaning
     int old_y, old_x;
-    // count when to tick physics
-    int tick_count;
-    const int tick_limit;
-
 private:
     // apply momentum from arrow keys
     int momentum_y;
