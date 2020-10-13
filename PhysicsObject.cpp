@@ -2,104 +2,74 @@
 #include <ncurses.h>
 #include <unistd.h>
 
+// FIXME this is pretty terrible
+extern int max_x, max_y;
 
 void PhysicsObject::tick() {
     // check if physics should be applied and object rendered again this tick
-    incrementTick();
-    if (getTick() >= getTickLimit()) {
-        resetTick();
+    if (check_tick()) {
         // hold old location
-        if (!grounded() || getXMomentum() != 0) {
-            oldY = y;
-            oldX = x;
+        if (!grounded() || get_momentum_x() != 0) {
+            old_y = y;
+            old_x = x;
         }
 
         // apply gravity only if not moving up
-        if (getYMomentum() >= 0 && !grounded()) {
+        if (get_momentum_y() >= 0 && !grounded()) {
             //usleep(1000000);
             y = y + 1;
-        }  else if (y > 0 && getYMomentum() != 0) {
+        }  else if (y > 0 && get_momentum_y() != 0) {
             // decrement momentum and move up
-            setYMomentum(getYMomentum() + 1);
+            set_momentum_y(get_momentum_y() + 1);
             y--;
         }
 
-        // screen size
-        int maxY, maxX;
-        getmaxyx(stdscr, maxY, maxX);
-
         // apply any left and right momentum
-        if (getXMomentum() > 0 && x < maxX) {
+        if (get_momentum_x() > 0 && x < max_x) {
             x++;
-            setXMomentum(getXMomentum() - 1);
-        } else if (getXMomentum() < 0 && x > 0) {
+            set_momentum_x(get_momentum_x() - 1);
+        } else if (get_momentum_x() < 0 && x > 0) {
             x--;
-            setXMomentum(getXMomentum() + 1);
+            set_momentum_x(get_momentum_x() + 1);
         }
-
-        render();
     }
-
 }
 
 PhysicsObject::PhysicsObject(char sprite, int x, int y)
     : CollisionObject::CollisionObject(sprite, x, y)
-    , tickCount(0)
-    , tickLimit(30)
-    , yMomentum(0)
-    , xMomentum(0)
+    , tick_count(0)
+    , tick_limit(30)
+    , momentum_y(0)
+    , momentum_x(0)
+    , on_ground(false)
 {}
 
 // render object and remove from previous location
 void PhysicsObject::render() {
-    mvprintw(oldY, oldX, " ");
+    mvprintw(old_y, old_x, " ");
     SpriteObject::render();
 }
 
 // increment tick count that tracks if this object is to be updated
-void PhysicsObject::incrementTick() {
-    tickCount++;
+bool PhysicsObject::check_tick() {
+    tick_count++;
+    if (tick_count == tick_limit) {
+        // reset
+        tick_count = 0;
+        return true;
+    }
+    return false;
 }
 
-// get tick count
-int PhysicsObject::getTick() {
-    return tickCount;
-}
-
-// point at which to render object
-int PhysicsObject::getTickLimit() {
-    return tickLimit;
-}
-
-
-// reset tick count
-void PhysicsObject::resetTick() {
-    tickCount = 0;
-}
+int PhysicsObject::get_tick_limit() { return tick_limit; }
 
 // denote object as grounded or ungrounded
-void PhysicsObject::setGrounded(bool grounded) {
-    onGround = grounded;
-}
-
+void PhysicsObject::set_grounded(bool grounded) { on_ground = grounded; }
 // check if object grounded
-bool PhysicsObject::grounded() {
-    return onGround;
-}
+bool PhysicsObject::grounded() { return on_ground; }
 
 // get and set momentum
-int PhysicsObject::getYMomentum() {
-    return yMomentum;
-}
-
-void PhysicsObject::setYMomentum(int val) {
-    yMomentum = val;
-}
-
-int PhysicsObject::getXMomentum() {
-    return xMomentum;
-}
-
-void PhysicsObject::setXMomentum(int val) {
-    xMomentum = val;
-}
+int PhysicsObject::get_momentum_y() { return momentum_y; }
+void PhysicsObject::set_momentum_y(int val) { momentum_y = val; }
+int PhysicsObject::get_momentum_x() { return momentum_x; }
+void PhysicsObject::set_momentum_x(int val) { momentum_x = val; }
