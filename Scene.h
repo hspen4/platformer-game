@@ -7,10 +7,8 @@
 #include "Player.h"
 #include <vector>
 
-/**
- * the scene object holds all objects, and is responsible for ticking
- * physics and rendering everything
- */
+// the scene object holds all objects, and is responsible for ticking
+// physics and rendering everything
 class Scene {
 private:
     // every object

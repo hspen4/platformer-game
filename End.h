@@ -3,6 +3,7 @@
 
 #include "CollisionObject.h"
 
+// object that ends the level when you collide with it, winning the game
 class End : public CollisionObject {
 public:
 	// inherit constructors

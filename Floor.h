@@ -4,6 +4,8 @@
 #include "RenderedObject.h"
 #include "PhysicsObject.h"
 
+// a static platform that PhyisicsObjects won't fall through
+// falling behaviour implemented mostly in ::collide
 class Floor : public RenderedObject {
 private:
     // left and right sides, inclusive

@@ -4,6 +4,8 @@
 #include "PhysicsObject.h"
 #include <vector>
 
+// player class - takes input and can move, jump, etc
+// can interact with collisionobjects, see CollisionObject::collide
 class Player : public PhysicsObject {
 public:
     bool is_player = true;

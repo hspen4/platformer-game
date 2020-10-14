@@ -3,6 +3,7 @@
 
 #include "CollisionObject.h"
 
+// object that gives you score when you collide with it
 class Collectible : public CollisionObject {
 public:
 	// inherit constructors

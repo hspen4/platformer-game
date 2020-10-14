@@ -3,6 +3,8 @@
 
 #include "RenderedObject.h"
 
+// an object that has an x and y position, and a single character sprite
+// to be rendered each frame
 class SpriteObject : public RenderedObject {
 private:
     char sprite[2];

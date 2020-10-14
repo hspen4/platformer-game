@@ -4,6 +4,7 @@
 #include "CollisionObject.h"
 #include "TickCounter.h"
 
+// object that has gravity
 class PhysicsObject : public CollisionObject {
 public:
     PhysicsObject(char sprite, int x = 0, int y = 0);
