@@ -3,6 +3,14 @@
 #include <iostream>
 #include <vector>
 
+// ctor
+
+Player::Player(char sprite, int x, int y)
+    : PhysicsObject::PhysicsObject(sprite, x, y)
+    , score(0)
+    , playing(true)
+{}
+
 // gets user input
 // parse input
 
@@ -43,3 +51,10 @@ void Player::set_keys(std::vector <int> newKeys) {
 // we only have one player, so this should never get called or do anything
 bool Player::check_collision(Player *p) { return false; }
 bool Player::collide(Player *p) { return false; }
+
+
+// getters and setters
+int Player::get_score() { return score; }
+void Player::set_score(int score) { this->score = score; }
+bool Player::get_playing() { return playing; }
+void Player::set_playing(bool playing) { this->playing = playing; }
