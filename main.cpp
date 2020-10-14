@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <ncurses.h>
 #include <unistd.h>
+#include <thread>
+#include <chrono>
 
 int max_y, max_x;
 
@@ -57,7 +59,7 @@ int main (void) {
     clrtobot();
     mvprintw(1,0,"You win! Press any key to continue...");
     refresh();
-    usleep(1000000);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     while (getch() != ERR);
     nodelay(stdscr,false);
     getch();

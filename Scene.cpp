@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <ncurses.h>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 Scene::Scene() : player(nullptr) {}
 Scene::~Scene() {
@@ -53,7 +55,7 @@ void Scene::new_floor(int left_x, int right_x, int y) {
 }
 
 bool Scene::tick(std::vector <int> keys) {
-   usleep(3000);
+   std::this_thread::sleep_for(std::chrono::milliseconds(3));
    player->set_keys(keys); // pass user input to player object
    for (auto obj : physics_objects) {
       obj->tick();
