@@ -35,7 +35,7 @@ void floors() {
     // the floor should push p upwards
     p.set_y(5);
     f.collide(&p);
-    assertm(p.get_y() == 4, "pushed from inside floor");
+    assertm(p.get_momentum_y() <= 0, "pushed from inside floor");
 
     // move p to the right, they should start falling
     p.set_x(15);
