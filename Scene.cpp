@@ -26,7 +26,7 @@ void Scene::new_collectible(char sprite, int x, int y) {
    CollisionObject *obj = new Collectible(sprite, x, y);
    objects.push_back(obj);
    collision_objects.push_back(obj);
-}  
+}
 void Scene::new_end(char sprite, int x, int y) {
    CollisionObject *obj = new End(sprite, x, y);
    objects.push_back(obj);
@@ -75,6 +75,7 @@ bool Scene::tick(std::vector <int> keys) {
    }
 
    for (auto obj : objects) obj->render();
+   if (player) player->render();
    return (player->get_playing());
 }
 
