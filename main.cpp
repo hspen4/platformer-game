@@ -5,6 +5,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ncurses.h>
+#include <unistd.h>
 
 int max_y, max_x;
 
@@ -23,7 +24,9 @@ int main (void) {
     Scene scene;
 
     scene.new_player('@', 1, 5);
-    scene.new_collectible('!', 2, 9);
+    scene.new_collectible('!', 14, max_y-4);
+    scene.new_collectible('!', 103, max_y-4);
+    scene.new_end('O', 50, max_y-10);
 
     scene.new_floor(0, max_x, max_y - 1);
 
@@ -35,9 +38,9 @@ int main (void) {
     scene.new_floor(99, 110, max_y - 3);
     scene.new_floor(39, 81, max_y - 9);
 
+    bool playing = true;
 
-
-    while (1) {
+    while (playing) {
         // get keys pressed on each tick
         std::vector <int> keys;
         int key;
@@ -45,10 +48,19 @@ int main (void) {
             keys.push_back(key); // get non-blocking input if available
         }
 
-        scene.tick(keys);
+        playing = scene.tick(keys);
         refresh();
 
     }
+
+    move(1,0);
+    clrtobot();
+    mvprintw(1,0,"You win! Press any key to continue...");
+    refresh();
+    usleep(1000000);
+    while (getch() != ERR);
+    nodelay(stdscr,false);
+    getch();
 
     endwin();
 

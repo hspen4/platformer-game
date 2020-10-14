@@ -52,7 +52,7 @@ void Scene::new_floor(int left_x, int right_x, int y) {
    floors.push_back(floor);
 }
 
-void Scene::tick(std::vector <int> keys) {
+bool Scene::tick(std::vector <int> keys) {
    usleep(3000);
    player->set_keys(keys); // pass user input to player object
    for (auto obj : physics_objects) {
@@ -75,6 +75,7 @@ void Scene::tick(std::vector <int> keys) {
    }
 
    for (auto obj : objects) obj->render();
+   return (player->get_playing());
 }
 
 void Scene::remove_object(RenderedObject *obj) {
