@@ -28,7 +28,7 @@ int main (void) {
     scene.new_player('@', 1, 5);
     scene.new_collectible('!', 14, max_y-4);
     scene.new_collectible('!', 103, max_y-4);
-    scene.new_end('O', 50, max_y-10);
+    scene.new_end('*', 50, max_y-10);
 
     scene.new_floor(0, max_x, max_y - 1);
 

@@ -7,6 +7,9 @@ FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option 
 
 INCLUDES=-lncurses
 
+all: game test
+	./test
+
 game: $(OBJSPATHS) main.cpp
 	$(CXX) $(FLAGS) -o game $(OBJSPATHS) main.cpp $(INCLUDES)
 
