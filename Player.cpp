@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 
+extern int max_x, max_y;
+
 // ctor
 
 Player::Player(char sprite, int x, int y)
@@ -41,6 +43,12 @@ void Player::input() {
 void Player::tick() {
 	input();
 	PhysicsObject::tick();
+	// re-print score
+	for(int i = 0; i <= max_x; i++) {
+		mvprintw(0,i," ");
+	}
+	mvprintw(0,0,"Score: %d", get_score());
+
 }
 
 // set keys
