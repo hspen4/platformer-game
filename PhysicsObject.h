@@ -7,28 +7,28 @@
 // object that has gravity
 class PhysicsObject : public CollisionObject {
 public:
-    PhysicsObject(char sprite, int x = 0, int y = 0);
+    PhysicsObject(char sprite, float x, float y);
     // called on every game tick - should apply momentum, gravity, etc
     virtual void tick();
     void render() override;
     bool grounded();
     void set_grounded(bool);
-    int get_momentum_y();
-    void set_momentum_y(int);
-    int get_momentum_x();
-    void set_momentum_x(int);
+    void set_dx(float);
+    void set_dy(float);
+    float get_dx();
+    float get_dy();
     bool collide(Player *) override;
-    TickCounter x_tick;
-    TickCounter y_tick;
 protected:
     // old location for cleaning
     int old_y, old_x;
 private:
     // apply momentum from arrow keys
-    int momentum_y;
-    int momentum_x;
+    float dy;
+    float dx;
     bool on_ground; // check if object on ground
     bool check_tick(); // returns true if we should update
+
+
 };
 
 #endif

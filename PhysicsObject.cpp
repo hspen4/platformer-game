@@ -2,45 +2,36 @@
 #include "TickCounter.h"
 #include <ncurses.h>
 #include <unistd.h>
+#include <algorithm>
 
 // FIXME this is pretty terrible
 extern int max_x, max_y;
 
+const float tick_dt = 1/60;
+const int gravity = 9;
+
 void PhysicsObject::tick() {
-    // check if physics should be applied and object rendered again this tick
     old_x = x;
     old_y = y;
-    if (x_tick.check()) {
-        // apply any left and right momentum
-        if (get_momentum_x() > 0 && x < max_x) {
-            x++;
-            set_momentum_x(get_momentum_x() - 1);
-        } else if (get_momentum_x() < 0 && x > 0) {
-            x--;
-            set_momentum_x(get_momentum_x() + 1);
-        }
+    if (dy < 0) set_grounded(false);
+
+    // you can only move at most 1 tile per tick
+    x += std::min(dx * tick_dt, 1.0);
+    y += std::min(dy * tick_dt, 1.0);
+
+    // gravity
+    dy += gravity * tick_dt;
+
+    // friction
+    if (on_ground) {
+        dx *= 0.7;
     }
-    if (y_tick.check()) {
-        // apply gravity only if not moving up
-        if (get_momentum_y() >= 0 && !grounded()) {
-            //usleep(1000000);
-            // gravity
-            y = y + 1;
-        }  else if (y > 0 && get_momentum_y() != 0) {
-            // decrement momentum and move up
-            set_momentum_y(get_momentum_y() + 1);
-            y--;
-        }
-    }
-    set_grounded(false); // reset grounded
 }
 
-PhysicsObject::PhysicsObject(char sprite, int x, int y)
+PhysicsObject::PhysicsObject(char sprite, float x, float y)
     : CollisionObject::CollisionObject(sprite, x, y)
-    , x_tick(15)
-    , y_tick(30)
-    , momentum_y(0)
-    , momentum_x(0)
+    , dy(0)
+    , dx(0)
     , on_ground(false)
 {}
 
@@ -52,13 +43,13 @@ void PhysicsObject::render() {
 
 bool PhysicsObject::collide(Player *p) { return true; }
 
+void PhysicsObject::set_dx(float _dx) { dx = _dx; }
+void PhysicsObject::set_dy(float _dy) { dy = _dy; }
+
+float PhysicsObject::get_dx() { return dx; }
+float PhysicsObject::get_dy() { return dy; }
+
 // denote object as grounded or ungrounded
 void PhysicsObject::set_grounded(bool grounded) { on_ground = grounded; }
 // check if object grounded
 bool PhysicsObject::grounded() { return on_ground; }
-
-// get and set momentum
-int PhysicsObject::get_momentum_y() { return momentum_y; }
-void PhysicsObject::set_momentum_y(int val) { momentum_y = val; }
-int PhysicsObject::get_momentum_x() { return momentum_x; }
-void PhysicsObject::set_momentum_x(int val) { momentum_x = val; }

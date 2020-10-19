@@ -20,27 +20,27 @@ Scene::~Scene() {
     physics_objects.clear();
 }
 
-void Scene::new_sprite(char sprite, int x, int y) {
+void Scene::new_sprite(char sprite, float x, float y) {
     RenderedObject *obj = new SpriteObject(sprite, x, y);
     objects.push_back(obj);
 }
-void Scene::new_collectible(char sprite, int x, int y) {
+void Scene::new_collectible(char sprite, float x, float y) {
    CollisionObject *obj = new Collectible(sprite, x, y);
    objects.push_back(obj);
    collision_objects.push_back(obj);
 }
-void Scene::new_end(char sprite, int x, int y) {
+void Scene::new_end(char sprite, float x, float y) {
    CollisionObject *obj = new End(sprite, x, y);
    objects.push_back(obj);
    collision_objects.push_back(obj);
 }
-void Scene::new_physics(char sprite, int x, int y) {
+void Scene::new_physics(char sprite, float x, float y) {
     PhysicsObject *obj = new PhysicsObject(sprite, x, y);
     objects.push_back(obj);
     collision_objects.push_back(obj);
     physics_objects.push_back(obj);
 }
-void Scene::new_player(char sprite, int x, int y) {
+void Scene::new_player(char sprite, float x, float y) {
     Player *obj = new Player(sprite, x, y);
     objects.push_back(obj);
     physics_objects.push_back(obj);
@@ -55,7 +55,8 @@ void Scene::new_floor(int left_x, int right_x, int y) {
 }
 
 bool Scene::tick(std::vector <int> keys) {
-   std::this_thread::sleep_for(std::chrono::milliseconds(3));
+   // ~60 ticks per second
+   std::this_thread::sleep_for(std::chrono::milliseconds(16));
    player->set_keys(keys); // pass user input to player object
    for (auto obj : physics_objects) {
       obj->tick();

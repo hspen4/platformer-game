@@ -6,5 +6,5 @@
 
 bool CollisionObject::check_collision(Player *p) {
     // occupying the same space
-    return p->get_x() == x && p->get_y() == y;
+    return p->get_render_x() == x && p->get_render_y() == y;
 }

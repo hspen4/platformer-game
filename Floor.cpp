@@ -8,20 +8,16 @@ Floor::Floor(int left_x, int right_x, int y)
 {}
 
 void Floor::collide(PhysicsObject *obj) {
-    if (obj->get_y() == y) {
-        if (obj->get_x() >= left_x && obj->get_x() <= right_x) {
-            // the object's inside the floor, make sure it has upwards momentum
-            if (obj->get_momentum_y() >= 0) {
-                obj->set_momentum_y(-1);
-            }
-        }
-    } else if (obj->get_y() == (y - 1) && obj->get_momentum_y() == 0) {
-        if (obj->get_x() >= left_x && obj->get_x() <= right_x) {
-            // object is grounded, set status
+    if (obj->get_render_y() == y
+        && obj->get_render_x() >= left_x && obj->get_render_x() <= right_x
+    ) {
+        if (obj->get_dy() >= 0) {
+            // falling object - push it up and reset momentum
+            obj->set_y(obj->get_y() - 1);
+            obj->set_dy(0);
             obj->set_grounded(true);
         }
     }
-    return;
 }
 
 void Floor::render() {

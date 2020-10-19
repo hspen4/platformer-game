@@ -7,7 +7,7 @@ extern int max_x, max_y;
 
 // ctor
 
-Player::Player(char sprite, int x, int y)
+Player::Player(char sprite, float x, float y)
     : PhysicsObject::PhysicsObject(sprite, x, y)
     , score(0)
     , playing(true)
@@ -23,20 +23,19 @@ void Player::input() {
 			case 'W':
 			case KEY_UP:
 			    if (grounded()) {
-					set_momentum_y(-3);
+					set_dy(-8);
 			    }
 			    break;
 			case 'A':
 			case KEY_LEFT:
-				set_momentum_x(-1);
+				set_dx(-10);
 			    break;
 			case 'D':
 			case KEY_RIGHT:
-				set_momentum_x(1);
+				set_dx(10);
 			    break;
 		    }
 	}
-
 }
 
 // add user input to tick method
@@ -54,7 +53,7 @@ void Player::tick() {
 // set keys
 void Player::set_keys(std::vector <int> newKeys) {
 	keys = newKeys;
-} 
+}
 
 // we only have one player, so this should never get called or do anything
 bool Player::check_collision(Player *p) { return false; }
