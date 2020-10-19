@@ -38,6 +38,8 @@ public:
     void new_player(char sprite, float x = 0, float y = 0);
     bool tick(std::vector <int>);
     Scoreboard get_scoreboard();
+    int get_score();
+    void add_score(Score);
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "RenderedObject.h"
 #include "PhysicsObject.h"
+#include "Score.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -57,12 +58,20 @@ int main (void) {
 
     move(1,0);
     clrtobot();
-    mvprintw(1,0,"You win! Press any key to continue...");
+    mvprintw(1,0,"You win! Enter a name for the leaderboard: ");
     refresh();
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    char name[9];
+    scanw("%9s%*[^\n]",name);
+
+    // add score and name to board
+
+    Score playerSc(name, scene.get_score());
+    scene.add_score(playerSc);
+
+    /*std::this_thread::sleep_for(std::chrono::milliseconds(500));
     while (getch() != ERR);
     nodelay(stdscr,false);
-    getch();
+    getch();*/
 
     endwin();
 

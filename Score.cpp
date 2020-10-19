@@ -7,6 +7,12 @@ Score::Score(std::string name, int points)
 	, name(name)
 {}
 
+// overload less than operator for sorting
+
+bool Score::operator < (const Score& obj) {
+	return points < obj.points;
+}
+
 // getters and setters
 
 int Score::get_points() { return points; }
