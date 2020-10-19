@@ -1,4 +1,4 @@
-#ifndef SCORE_h
+#ifndef SCORE_H
 #define SCORE_H
 
 #include <string>
@@ -14,3 +14,5 @@ private:
 	int points;
 	std::string name;
 };
+
+#endif

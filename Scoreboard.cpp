@@ -1,4 +1,5 @@
 #include "Scoreboard.h"
+#include "Score.h"
 #include <fstream>
 
 // set up scoreboard, reading from existing file if available
@@ -8,12 +9,12 @@ Scoreboard::Scoreboard(const std::string file) : file(file) {
 	// set up file reading
 
 	std::ifstream ifs;
-	ifs.open(file)
+	ifs.open(file);
 
 	// check if empty, create file if so
 
 	if (ifs.peek() == std::ifstream::traits_type::eof()) {
-		ifs.close()
+		ifs.close();
 		std::ofstream ofs;
 		ofs.open(file);
 		entries = 0;
@@ -37,13 +38,13 @@ Scoreboard::Scoreboard(const std::string file) : file(file) {
 
 // add a new score to the board
 
-void Scoreboard::add_score(Score) {
-	scores.push_back(Score);
+void Scoreboard::add_score(Score sc) {
+	scores.push_back(sc);
 }
 
 // destructor
 
-~Scoreboard::Scoreboard() {
+Scoreboard::~Scoreboard() {
 	// clear existing file
 	std::ofstream ofs;
 	ofs.open(file);
@@ -60,5 +61,5 @@ void Scoreboard::add_score(Score) {
 
 }
 
-std::vector <Score> get_scores() { return scores; }
+std::vector<Score> Scoreboard::get_scores() { return scores; }
 

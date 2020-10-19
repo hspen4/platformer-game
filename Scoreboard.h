@@ -13,4 +13,7 @@ public:
 private:
 	const std::string file;
 	std::vector <Score> scores;
+	int entries;
 };
+
+#endif

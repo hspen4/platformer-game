@@ -5,7 +5,10 @@
 #include "PhysicsObject.h"
 #include "Floor.h"
 #include "Player.h"
+#include "Scoreboard.h"
+#include "Score.h"
 #include <vector>
+#include <string>
 
 // the scene object holds all objects, and is responsible for ticking
 // physics and rendering everything
@@ -19,8 +22,9 @@ private:
 
     Player *player;
     void remove_object(RenderedObject *obj);
+    Scoreboard sb;
 public:
-    Scene();
+    Scene(std::string file);
     ~Scene();
     // this holds raw pointers, so copying is a Mistake
     Scene(const Scene &other) = delete; // copy ctor
@@ -33,6 +37,7 @@ public:
     void new_floor(int left_x, int right_x, int y);
     void new_player(char sprite, float x = 0, float y = 0);
     bool tick(std::vector <int>);
+    Scoreboard get_scoreboard();
 };
 
 #endif

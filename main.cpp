@@ -23,7 +23,7 @@ int main (void) {
     // get size of screen
     getmaxyx(stdscr, max_y, max_x);
 
-    Scene scene;
+    Scene scene("scores/level_1.txt");
 
     scene.new_player('@', 1, 5);
     scene.new_collectible('!', 14, max_y-4);

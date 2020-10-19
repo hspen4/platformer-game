@@ -5,15 +5,18 @@
 #include "Player.h"
 #include "Collectible.h"
 #include "End.h"
+#include "Scoreboard.h"
+#include "Score.h"
 #include <stdexcept>
 #include <algorithm>
 #include <unistd.h>
 #include <ncurses.h>
 #include <vector>
 #include <thread>
+#include <string>
 #include <chrono>
 
-Scene::Scene() : player(nullptr) {}
+Scene::Scene(std::string file) : player(nullptr), sb(file) {}
 Scene::~Scene() {
     for (auto obj : objects) delete obj;
     objects.clear();
@@ -89,4 +92,4 @@ void Scene::remove_object(RenderedObject *obj) {
    delete obj;
 }
 
-
+Scoreboard Scene::get_scoreboard() { return sb; }
