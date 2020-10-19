@@ -13,18 +13,18 @@ public:
     void render() override;
     bool grounded();
     void set_grounded(bool);
-    void set_dx(float);
-    void set_dy(float);
-    float get_dx();
-    float get_dy();
+    void set_dx(double);
+    void set_dy(double);
+    double get_dx();
+    double get_dy();
     bool collide(Player *) override;
 protected:
     // old location for cleaning
     int old_y, old_x;
 private:
     // apply momentum from arrow keys
-    float dy;
-    float dx;
+    double dy;
+    double dx;
     bool on_ground; // check if object on ground
     bool check_tick(); // returns true if we should update
 

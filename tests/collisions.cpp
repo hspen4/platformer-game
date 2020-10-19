@@ -2,7 +2,6 @@
 #include "../Player.h"
 #include "../CollisionObject.h"
 
-
 // CollisionObject is abstract, so we need to subclass it for this test
 class TestCollisionObject : public CollisionObject {
 public:

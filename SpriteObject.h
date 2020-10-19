@@ -9,18 +9,18 @@ class SpriteObject : public RenderedObject {
 private:
     char sprite[2];
 protected:
-    float x;
-    float y;
+    double x;
+    double y;
 public:
-    SpriteObject(char sprite, float x = 0, float y = 0);
+    SpriteObject(char sprite, double x = 0, double y = 0);
     virtual ~SpriteObject() = default;
     virtual void render() override;
-    float get_x();
-    float get_y();
+    double get_x();
+    double get_y();
     int get_render_x();
     int get_render_y();
-    void set_x(float _x);
-    void set_y(float _y);
+    void set_x(double _x);
+    void set_y(double _y);
 };
 
 #endif

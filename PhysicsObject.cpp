@@ -4,11 +4,13 @@
 #include <unistd.h>
 #include <algorithm>
 
+#include <iostream>
+
 // FIXME this is pretty terrible
 extern int max_x, max_y;
 
-const double tick_dt = 1/60;
-const int gravity = 9;
+const double tick_dt = 0.016;
+const double gravity = 0.15;
 
 void PhysicsObject::tick() {
     old_x = x;
@@ -20,7 +22,7 @@ void PhysicsObject::tick() {
     y += std::min(dy * tick_dt, 1.0);
 
     // gravity
-    dy += gravity * tick_dt;
+    dy += gravity; // 1/60 * 9
 
     // friction
     if (on_ground) {
@@ -43,11 +45,11 @@ void PhysicsObject::render() {
 
 bool PhysicsObject::collide(Player *p) { return true; }
 
-void PhysicsObject::set_dx(float _dx) { dx = _dx; }
-void PhysicsObject::set_dy(float _dy) { dy = _dy; }
+void PhysicsObject::set_dx(double _dx) { dx = _dx; }
+void PhysicsObject::set_dy(double _dy) { dy = _dy; }
 
-float PhysicsObject::get_dx() { return dx; }
-float PhysicsObject::get_dy() { return dy; }
+double PhysicsObject::get_dx() { return dx; }
+double PhysicsObject::get_dy() { return dy; }
 
 // denote object as grounded or ungrounded
 void PhysicsObject::set_grounded(bool grounded) { on_ground = grounded; }
