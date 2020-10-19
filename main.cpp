@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <thread>
 #include <chrono>
+#include <algorithm>
 
 int max_y, max_x;
 
@@ -29,7 +30,7 @@ int main (void) {
     scene.new_player('@', 1, 5);
     scene.new_collectible('!', 14, max_y-4);
     scene.new_collectible('!', 103, max_y-4);
-    scene.new_end('*', 50, max_y-10);
+    scene.new_end('*', 1, max_y-10);
 
     scene.new_floor(0, max_x, max_y - 1);
 
@@ -56,22 +57,39 @@ int main (void) {
 
     }
 
+    nodelay(stdscr,false);
+    echo();
     move(1,0);
     clrtobot();
     mvprintw(1,0,"You win! Enter a name for the leaderboard: ");
     refresh();
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     char name[9];
-    scanw("%9s%*[^\n]",name);
+    scanw("%8s%*[^\n]",name);
+    //scanw("%*[^\n]%8s%*[^\n]",name);
 
     // add score and name to board
 
+    clear();
     Score playerSc(name, scene.get_score());
     scene.add_score(playerSc);
 
-    /*std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    while (getch() != ERR);
-    nodelay(stdscr,false);
-    getch();*/
+    // get the scores and sort them
+
+    std::vector<Score> sb = scene.get_scoreboard().get_scores();
+    std::sort(sb.begin(), sb.end());
+    scene.set_scores(sb);
+
+    // display the scores
+    int j = 0;
+    for (auto i : sb) {
+        mvprintw(2 + j, (max_x / 2) - 5, i.get_name().c_str());
+        mvprintw(2 + j, (max_x / 2) + 5, std::to_string(i.get_points()).c_str());
+        j++;
+    }
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    getch();
 
     endwin();
 

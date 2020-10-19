@@ -4,7 +4,7 @@
 
 // set up scoreboard, reading from existing file if available
 
-Scoreboard::Scoreboard(const std::string file) : file(file) {
+Scoreboard::Scoreboard(std::string file) : file(file) {
 
 	// set up file reading
 
@@ -40,6 +40,7 @@ Scoreboard::Scoreboard(const std::string file) : file(file) {
 
 void Scoreboard::add_score(Score sc) {
 	scores.push_back(sc);
+	entries++;
 }
 
 // destructor
@@ -62,4 +63,5 @@ Scoreboard::~Scoreboard() {
 }
 
 std::vector<Score> Scoreboard::get_scores() { return scores; }
+void Scoreboard::set_scores(std::vector <Score> s) { scores = s; }
 

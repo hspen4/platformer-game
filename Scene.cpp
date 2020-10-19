@@ -95,5 +95,6 @@ void Scene::remove_object(RenderedObject *obj) {
 // getters and setters
 
 Scoreboard Scene::get_scoreboard() { return sb; }
+void Scene::set_scores(std::vector <Score> lb) { sb.set_scores(lb); }
 int Scene::get_score() { return player->get_score(); }
 void Scene::add_score(Score score) { sb.add_score(score); }

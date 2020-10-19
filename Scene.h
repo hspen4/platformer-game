@@ -40,6 +40,7 @@ public:
     Scoreboard get_scoreboard();
     int get_score();
     void add_score(Score);
+    void set_scores(std::vector <Score>);
 };
 
 #endif

@@ -9,7 +9,7 @@ Score::Score(std::string name, int points)
 
 // overload less than operator for sorting
 
-bool Score::operator < (const Score& obj) {
+bool Score::operator < (const Score& obj) const {
 	return points < obj.points;
 }
 
