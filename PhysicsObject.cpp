@@ -7,7 +7,7 @@
 // FIXME this is pretty terrible
 extern int max_x, max_y;
 
-const float tick_dt = 1/60;
+const double tick_dt = 1/60;
 const int gravity = 9;
 
 void PhysicsObject::tick() {
