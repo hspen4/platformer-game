@@ -13,7 +13,6 @@ public:
 private:
     TickCounter movement_timer;
     int movement_direction;
-    int movement_steps;
 };
 
 #endif

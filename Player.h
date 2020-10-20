@@ -25,7 +25,6 @@ private:
     void input();          // parse user input
     std::vector<int> keys; // hold user input
     float score;
-    bool playing;
     GameState cur_state;
 };
 

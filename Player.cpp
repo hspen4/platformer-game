@@ -8,7 +8,6 @@
 extern int max_x, max_y;
 
 // ctor
-
 Player::Player(char sprite, float x, float y)
     : PhysicsObject::PhysicsObject(sprite, x, y)
     , score(201)
@@ -17,7 +16,6 @@ Player::Player(char sprite, float x, float y)
 
 // gets user input
 // parse input
-
 void Player::input() {
     // apply momentum based on keys
     for (auto key : keys) {
