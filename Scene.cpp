@@ -72,6 +72,7 @@ GameState Scene::tick(std::vector<int> keys) {
     player->set_keys(keys); // pass user input to player object
     for (auto obj : physics_objects) {
         obj->tick();
+        obj->set_grounded(false);
         for (auto floor : floors) {
             floor->collide(obj);
         }

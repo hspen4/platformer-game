@@ -15,7 +15,6 @@ const double gravity = 0.15;
 void PhysicsObject::tick() {
     old_x = x;
     old_y = y;
-    if (dy < 0) set_grounded(false);
 
     // you can only move at most 1 tile per tick
     x += std::min(dx * tick_dt, 1.0);

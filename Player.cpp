@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ncurses.h>
 #include <vector>
+#include <algorithm>
 
 extern int max_x, max_y;
 
@@ -72,7 +73,7 @@ void Player::respawn() {
     y = orig_y;
     x = orig_x;
 }
-
+//
 // set keys
 void Player::set_keys(std::vector<int> newKeys) { keys = newKeys; }
 
