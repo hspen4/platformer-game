@@ -41,7 +41,7 @@ public:
     void new_player(char sprite, float x = 0, float y = 0);
     GameState tick(std::vector<int>);
     Scoreboard get_scoreboard();
-    int get_score();
+    float get_score();
     void add_score(Score);
     void set_scores(std::vector<Score>);
 };

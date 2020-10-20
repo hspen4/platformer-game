@@ -81,7 +81,7 @@ int main(void) {
     // add score and name to board
 
     clear();
-    Score playerSc(name, scene->get_score());
+    Score playerSc(name, (int)(scene->get_score()));
     scene->add_score(playerSc);
 
     // get the scores and sort them
