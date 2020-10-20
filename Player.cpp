@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "GameState.h"
 #include <ncurses.h>
 #include <iostream>
 #include <vector>
@@ -63,5 +64,5 @@ bool Player::collide(Player *p) { return false; }
 // getters and setters
 int Player::get_score() { return score; }
 void Player::set_score(int score) { this->score = score; }
-bool Player::get_playing() { return playing; }
-void Player::set_playing(bool playing) { this->playing = playing; }
+GameState Player::get_state() { return cur_state; }
+void Player::set_state(GameState state) { cur_state = state; }

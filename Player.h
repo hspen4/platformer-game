@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "GameState.h"
 #include "PhysicsObject.h"
 #include <vector>
 
@@ -16,13 +17,14 @@ public:
     void set_keys(std::vector<int>); // pass user input to class
     void set_score(int);
     int get_score();
-    void set_playing(bool);
-    bool get_playing();
+    void set_state(GameState);
+    GameState get_state();
 private:
     void input(); // parse user input
     std::vector <int> keys; // hold user input
     int score;
     bool playing;
+    GameState cur_state;
 };
 
 #endif

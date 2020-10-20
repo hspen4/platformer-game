@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Scoreboard.h"
 #include "Score.h"
+#include "GameState.h"
 #include <vector>
 #include <string>
 
@@ -34,9 +35,10 @@ public:
     void new_collectible(char sprite, float x = 0, float y = 0);
     void new_end(char sprite, float x = 0, float y = 0);
     void new_physics(char sprite, float x = 0, float y = 0);
+    void new_enemy(char sprite, float x = 0, float y = 0);
     void new_floor(int left_x, int right_x, int y);
     void new_player(char sprite, float x = 0, float y = 0);
-    bool tick(std::vector <int>);
+    GameState tick(std::vector <int>);
     Scoreboard get_scoreboard();
     int get_score();
     void add_score(Score);

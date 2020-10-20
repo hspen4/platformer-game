@@ -4,6 +4,7 @@
 #include "Floor.h"
 #include "Player.h"
 #include "Collectible.h"
+#include "Enemy.h"
 #include "End.h"
 #include "Scoreboard.h"
 #include "Score.h"
@@ -43,6 +44,12 @@ void Scene::new_physics(char sprite, float x, float y) {
     collision_objects.push_back(obj);
     physics_objects.push_back(obj);
 }
+void Scene::new_enemy(char sprite, float x, float y) {
+    PhysicsObject *obj = new Enemy(sprite, x, y);
+    objects.push_back(obj);
+    collision_objects.push_back(obj);
+    physics_objects.push_back(obj);
+}
 void Scene::new_player(char sprite, float x, float y) {
     Player *obj = new Player(sprite, x, y);
     objects.push_back(obj);
@@ -57,7 +64,7 @@ void Scene::new_floor(int left_x, int right_x, int y) {
    floors.push_back(floor);
 }
 
-bool Scene::tick(std::vector <int> keys) {
+GameState Scene::tick(std::vector <int> keys) {
    // ~60 ticks per second
    std::this_thread::sleep_for(std::chrono::milliseconds(16));
    player->set_keys(keys); // pass user input to player object
@@ -82,7 +89,7 @@ bool Scene::tick(std::vector <int> keys) {
 
    for (auto obj : objects) obj->render();
    if (player) player->render();
-   return (player->get_playing());
+   return (player->get_state());
 }
 
 void Scene::remove_object(RenderedObject *obj) {

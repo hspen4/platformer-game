@@ -2,6 +2,7 @@
 #include "RenderedObject.h"
 #include "PhysicsObject.h"
 #include "Score.h"
+#include "GameState.h"
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -42,9 +43,10 @@ int main (void) {
     scene.new_floor(99, 110, max_y - 3);
     scene.new_floor(39, 81, max_y - 9);
 
-    bool playing = true;
+    scene.new_enemy('M', 5, max_y - 2);
+    GameState state = GameState::Playing;
 
-    while (playing) {
+    while (state == GameState::Playing) {
         // get keys pressed on each tick
         std::vector <int> keys;
         int key;
@@ -52,16 +54,19 @@ int main (void) {
             keys.push_back(key); // get non-blocking input if available
         }
 
-        playing = scene.tick(keys);
+        state = scene.tick(keys);
         refresh();
-
     }
 
     nodelay(stdscr,false);
     echo();
     move(1,0);
     clrtobot();
-    mvprintw(1,0,"You win! Enter a name for the leaderboard: ");
+    if (state == GameState::Won) {
+        mvprintw(1,0,"You win! Enter a name for the leaderboard: ");
+    } else if (state == GameState::Dead) {
+        mvprintw(1,0,"You died! Enter a name for the leaderboard: ");
+    }
     refresh();
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     char name[9];
