@@ -12,7 +12,7 @@
 extern int max_y, max_x;
 
 Scene *level_4() {
-	Scene *scene = new Scene("scores/level_4.txt");
+    Scene *scene = new Scene("scores/level_4.txt");
 
     scene->new_player('@', 1, max_y - 2);
     scene->new_end('*', 47, max_y - 30);

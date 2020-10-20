@@ -12,7 +12,7 @@
 extern int max_y, max_x;
 
 Scene *level_3() {
-	Scene *scene = new Scene("scores/level_3.txt");
+    Scene *scene = new Scene("scores/level_3.txt");
 
     scene->new_player('@', 1, max_y - 2);
 
@@ -48,9 +48,9 @@ Scene *level_3() {
     scene->new_collectible('!', 35, max_y - 27);
     scene->new_collectible('!', 60, max_y - 27);
 
-    scene->new_enemy('M', 45, max_y - 8);
-    scene->new_enemy('M', 45, max_y - 16);
-    scene->new_enemy('M', 45, max_y - 24);
+    scene->new_enemy_walker('M', 45, max_y - 8);
+    scene->new_enemy_walker('M', 45, max_y - 16);
+    scene->new_enemy_walker('M', 45, max_y - 24);
 
 
 

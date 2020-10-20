@@ -1,7 +1,8 @@
 #include "Scene.h"
 #include "Collectible.h"
 #include "End.h"
-#include "Enemy.h"
+#include "EnemyWalker.h"
+#include "EnemyJumper.h"
 #include "Floor.h"
 #include "PhysicsObject.h"
 #include "Player.h"
@@ -16,7 +17,6 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
-
 Scene::Scene(std::string file) : player(nullptr), sb(file) {}
 Scene::~Scene() {
     for (auto obj : objects) delete obj;
@@ -25,33 +25,34 @@ Scene::~Scene() {
     collision_objects.clear();
 }
 
-void Scene::new_sprite(char sprite, float x, float y) {
-    RenderedObject *obj = new SpriteObject(sprite, x, y);
-    objects.push_back(obj);
-}
-void Scene::new_collectible(char sprite, float x, float y) {
-    CollisionObject *obj = new Collectible(sprite, x, y);
-    objects.push_back(obj);
-    collision_objects.push_back(obj);
-}
-void Scene::new_end(char sprite, float x, float y) {
-    CollisionObject *obj = new End(sprite, x, y);
-    objects.push_back(obj);
-    collision_objects.push_back(obj);
-}
-void Scene::new_physics(char sprite, float x, float y) {
-    PhysicsObject *obj = new PhysicsObject(sprite, x, y);
+template <class T>
+void Scene::new_physics(char sprite, double x, double y) {
+    PhysicsObject *obj = new T(sprite, x, y);
     objects.push_back(obj);
     collision_objects.push_back(obj);
     physics_objects.push_back(obj);
 }
-void Scene::new_enemy(char sprite, float x, float y) {
-    PhysicsObject *obj = new Enemy(sprite, x, y);
+
+template <class T>
+void Scene::new_collision(char sprite, double x, double y) {
+    CollisionObject *obj = new T(sprite, x, y);
     objects.push_back(obj);
     collision_objects.push_back(obj);
-    physics_objects.push_back(obj);
 }
-void Scene::new_player(char sprite, float x, float y) {
+
+void Scene::new_collectible(char sprite, double x, double y) {
+    new_collision<Collectible>(sprite, x, y);
+}
+void Scene::new_end(char sprite, double x, double y) {
+    new_collision<End>(sprite, x, y);
+}
+void Scene::new_enemy_walker(char sprite, double x, double y) {
+    new_physics<EnemyWalker>(sprite, x, y);
+}
+void Scene::new_enemy_jumper(char sprite, double x, double y) {
+    new_physics<EnemyJumper>(sprite, x, y);
+}
+void Scene::new_player(char sprite, double x, double y) {
     Player *obj = new Player(sprite, x, y);
     objects.push_back(obj);
     physics_objects.push_back(obj);

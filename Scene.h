@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 
+#include "EnemyJumper.h"
+
 // the scene object holds all objects, and is responsible for ticking
 // physics and rendering everything
 class Scene {
@@ -32,18 +34,24 @@ public:
     Scene(const Scene &other) = delete;          // copy ctor
     void operator=(const Scene &other) = delete; // copy assignment
 
-    void new_sprite(char sprite, float x = 0, float y = 0);
-    void new_collectible(char sprite, float x = 0, float y = 0);
-    void new_end(char sprite, float x = 0, float y = 0);
-    void new_physics(char sprite, float x = 0, float y = 0);
-    void new_enemy(char sprite, float x = 0, float y = 0);
+
     void new_floor(int left_x, int right_x, int y);
-    void new_player(char sprite, float x = 0, float y = 0);
+    void new_player(char sprite, double x = 0, double y = 0);
+    template <class T> void new_collision(char sprite, double x, double y);
+    template <class T> void new_physics(char sprite, double x, double y);
+
+    void new_collectible(char sprite, double x = 0, double y = 0);
+    void new_end(char sprite, double x, double y);
+    void new_enemy_walker(char sprite, double x = 0, double y = 0);
+    void new_enemy_jumper(char sprite, double x = 0, double y = 0);
+
+    void new_jumper(char sprite, double x, double y);
     GameState tick(std::vector<int>);
     Scoreboard get_scoreboard();
     float get_score();
     void add_score(Score);
     void set_scores(std::vector<Score>);
+
 };
 
 #endif

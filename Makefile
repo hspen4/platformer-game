@@ -1,4 +1,4 @@
-OBJS=Scene.o TickCounter.o RenderedObject.o SpriteObject.o Background.o CollisionObject.o Floor.o Collectible.o Platform.o PhysicsObject.o Player.o Enemy.o End.o Scoreboard.o Score.o
+OBJS=Scene.o TickCounter.o RenderedObject.o SpriteObject.o Background.o CollisionObject.o Floor.o Collectible.o Platform.o PhysicsObject.o Player.o Enemy.o EnemyWalker.o EnemyJumper.o End.o Scoreboard.o Score.o
 # .objs/whatever.o
 OBJSPATHS=$(addprefix .objs/,$(OBJS))
 
