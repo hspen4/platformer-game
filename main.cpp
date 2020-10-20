@@ -88,10 +88,13 @@ int main(void) {
 
     std::vector<Score> sb = scene->get_scoreboard().get_scores();
     std::sort(sb.begin(), sb.end());
+    std::reverse(sb.begin(), sb.end());
     scene->set_scores(sb);
 
     // display the scores
     int j = 0;
+    mvprintw(1, (max_x/2) - 5, "Name");
+    mvprintw(1, (max_x/2) + 5, "Score");
     for (auto i : sb) {
         mvprintw(2 + j, (max_x / 2) - 5, i.get_name().c_str());
         mvprintw(2 + j, (max_x / 2) + 5, std::to_string(i.get_points()).c_str());
