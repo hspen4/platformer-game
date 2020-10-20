@@ -101,11 +101,11 @@ int main(void) {
         int j = 0;
         mvprintw(0,0,"Press Any Key to Exit");
         mvprintw(0,(max_x/2) - 6, "Leaderboard");
-        mvprintw(2, (max_x/2) - 5, "Name");
-        mvprintw(2, (max_x/2) + 5, "Score");
+        mvprintw(2, (max_x/2) - 8, "Name");
+        mvprintw(2, (max_x/2) + 2, "Score");
         for (auto i : sb) {
-            mvprintw(3 + j, (max_x / 2) - 5, i.get_name().c_str());
-            mvprintw(3 + j, (max_x / 2) + 5, std::to_string(i.get_points()).c_str());
+            mvprintw(3 + j, (max_x / 2) - 8, i.get_name().c_str());
+            mvprintw(3 + j, (max_x / 2) + 2, std::to_string(i.get_points()).c_str());
             j++;
         }
 
