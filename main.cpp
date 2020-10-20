@@ -13,6 +13,7 @@
 #include <vector>
 
 int max_y, max_x;
+int menu();
 
 int main(void) {
     // set up curses options
@@ -25,6 +26,12 @@ int main(void) {
 
     // get size of screen
     getmaxyx(stdscr, max_y, max_x);
+
+    // choose level
+    int lvl = menu();
+
+    // load level
+    //load(lvl);
 
     Scene scene("scores/level_1.txt");
 
