@@ -16,8 +16,8 @@ int max_y, max_x;
 int menu();
 Scene *level_1();
 Scene *level_2();
-/*Scene *level_3();
-Scene *level_4();
+Scene *level_3();
+/*Scene *level_4();
 Scene *level_5();
 Scene *level_6();
 Scene *level_7();
@@ -38,8 +38,8 @@ int main(void) {
 
     // array of levels
 
-    Scene *(*levels[2])(void) = { &level_1,
-        &level_2,/* &level_3, &level_4, &level_5
+    Scene *(*levels[3])(void) = { &level_1,
+        &level_2, &level_3,/* &level_4, &level_5
         , &level_6, &level_7, &level_8, &level_9*/
     };
 
