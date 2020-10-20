@@ -50,6 +50,10 @@ void Player::tick() {
     if (score > 0) {
         score-=0.02;
     }
+    // check if player has fallen through the floor and died
+    if (y >= max_y) {
+        respawn();
+    }
     // re-print score
     for (int i = 0; i <= max_x; i++) {
         mvprintw(0, i, " ");
@@ -60,6 +64,9 @@ void Player::tick() {
 // respawn at original location on death
 void Player::respawn() {
     set_score(get_score() - 50);
+    if (get_score() < 0) {
+        set_score(0);
+    }
     set_dx(0);
     set_dy(0);
     y = orig_y;
