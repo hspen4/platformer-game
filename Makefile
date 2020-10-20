@@ -2,7 +2,7 @@ OBJS=Scene.o TickCounter.o RenderedObject.o SpriteObject.o Background.o Collisio
 # .objs/whatever.o
 OBJSPATHS=$(addprefix .objs/,$(OBJS))
 
-FUNCS=main.cpp menu.cpp
+FUNCS=main.cpp menu.cpp levels/*
 
 # clang doesn't support unused-but-set-variable
 FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option -ggdb

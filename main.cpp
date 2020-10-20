@@ -14,6 +14,15 @@
 
 int max_y, max_x;
 int menu();
+Scene *level_1();
+/*Scene *level_2();
+Scene *level_3();
+Scene *level_4();
+Scene *level_5();
+Scene *level_6();
+Scene *level_7();
+Scene *level_8();
+Scene *level_9();*/
 
 int main(void) {
     // set up curses options
@@ -27,30 +36,19 @@ int main(void) {
     // get size of screen
     getmaxyx(stdscr, max_y, max_x);
 
+    // array of levels
+
+    Scene *(*levels[1])(void) = { &level_1,/* 
+        &level_2, &level_3, &level_4, &level_5
+        , &level_6, &level_7, &level_8, &level_9*/
+    };
+
     // choose level
     int lvl = menu();
 
     // load level
-    //load(lvl);
+    Scene *scene = levels[lvl - 1]();
 
-    Scene scene("scores/level_1.txt");
-
-    scene.new_player('@', 1, 5);
-    scene.new_collectible('!', 14, max_y - 4);
-    scene.new_collectible('!', 103, max_y - 4);
-    scene.new_end('*', 1, max_y - 10);
-
-    scene.new_floor(0, max_x, max_y - 1);
-
-    scene.new_floor(10, 21, max_y - 3);
-    scene.new_floor(20, 40, max_y - 6);
-    scene.new_floor(39, 50, max_y - 3);
-    scene.new_floor(70, 81, max_y - 3);
-    scene.new_floor(80, 100, max_y - 6);
-    scene.new_floor(99, 110, max_y - 3);
-    scene.new_floor(39, 81, max_y - 9);
-
-    scene.new_enemy('M', 5, max_y - 2);
     GameState state = GameState::Playing;
 
     while (state == GameState::Playing) {
@@ -61,7 +59,7 @@ int main(void) {
             keys.push_back(key); // get non-blocking input if available
         }
 
-        state = scene.tick(keys);
+        state = scene->tick(keys);
         refresh();
     }
 
@@ -83,14 +81,14 @@ int main(void) {
     // add score and name to board
 
     clear();
-    Score playerSc(name, scene.get_score());
-    scene.add_score(playerSc);
+    Score playerSc(name, scene->get_score());
+    scene->add_score(playerSc);
 
     // get the scores and sort them
 
-    std::vector<Score> sb = scene.get_scoreboard().get_scores();
+    std::vector<Score> sb = scene->get_scoreboard().get_scores();
     std::sort(sb.begin(), sb.end());
-    scene.set_scores(sb);
+    scene->set_scores(sb);
 
     // display the scores
     int j = 0;

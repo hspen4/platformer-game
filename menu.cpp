@@ -14,14 +14,15 @@
 extern int max_x, max_y;
 
 int menu(void) {
-	echo();
+	noecho();
 	nodelay(stdscr,false);
 	// get level
 	mvprintw(max_y / 2, (max_x / 2) - 10, "Choose a level (1-9)");
-	int lvl = getch();
+	int lvl;
+	while ((lvl = getch()) < '0' || lvl > '9');
+	lvl -= '0';
 	// turn off curses options
 	clear();
-	noecho();
 	nodelay(stdscr,true);
 
 	return lvl;
