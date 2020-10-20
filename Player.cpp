@@ -10,7 +10,7 @@ extern int max_x, max_y;
 
 Player::Player(char sprite, float x, float y)
     : PhysicsObject::PhysicsObject(sprite, x, y)
-    , score(0)
+    , score(201)
     , cur_state(GameState::Playing)
 {}
 
@@ -43,11 +43,14 @@ void Player::input() {
 void Player::tick() {
     input();
     PhysicsObject::tick();
+    if (score > 0) {
+        score-=0.02;
+    }
     // re-print score
     for (int i = 0; i <= max_x; i++) {
         mvprintw(0, i, " ");
     }
-    mvprintw(0, 0, "Score: %d", get_score());
+    mvprintw(0, 0, "Score: %d", (int)get_score());
 }
 
 // set keys
@@ -58,7 +61,7 @@ bool Player::check_collision(Player *p) { return false; }
 bool Player::collide(Player *p) { return false; }
 
 // getters and setters
-int Player::get_score() { return score; }
-void Player::set_score(int score) { this->score = score; }
+float Player::get_score() { return score; }
+void Player::set_score(float score) { this->score = score; }
 GameState Player::get_state() { return cur_state; }
 void Player::set_state(GameState state) { cur_state = state; }

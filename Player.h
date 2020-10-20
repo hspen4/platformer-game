@@ -15,15 +15,15 @@ public:
     bool check_collision(Player *p) override;
     bool collide(Player *p) override;
     void set_keys(std::vector<int>); // pass user input to class
-    void set_score(int);
-    int get_score();
+    void set_score(float);
+    float get_score();
     void set_state(GameState);
     GameState get_state();
 
 private:
     void input();          // parse user input
     std::vector<int> keys; // hold user input
-    int score;
+    float score;
     bool playing;
     GameState cur_state;
 };
