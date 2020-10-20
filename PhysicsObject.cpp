@@ -31,11 +31,11 @@ void PhysicsObject::tick() {
 
 PhysicsObject::PhysicsObject(char sprite, float x, float y)
     : CollisionObject::CollisionObject(sprite, x, y)
+    , orig_y(y)
+    , orig_x(x)
     , dy(0)
     , dx(0)
     , on_ground(false)
-    , orig_x(x)
-    , orig_y(y)
 {}
 
 // render object and remove from previous location

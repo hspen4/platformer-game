@@ -21,6 +21,7 @@ void floors(Harness *assert) {
     p.set_x(15);
     for (int i = 0; i <= 600; i++) {
         p.tick();
+        p.set_grounded(false);
         f.collide(&p);
     }
     assert->gt(p.get_y(), 4.0, "position falling after walking off a platform");
