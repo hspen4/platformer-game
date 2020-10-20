@@ -16,10 +16,16 @@ extern int max_x, max_y;
 int menu(void) {
 	noecho();
 	nodelay(stdscr,false);
+	clear();
 	// get level
+	mvprintw(0,0,"Backspace to Exit");
 	mvprintw(max_y / 2, (max_x / 2) - 10, "Choose a level (1-9)");
 	int lvl;
-	while ((lvl = getch()) < '0' || lvl > '9');
+	while ((lvl = getch()) < '0' || lvl > '9') {
+		if (lvl == KEY_BACKSPACE) {
+			return lvl;
+		}
+	}
 	lvl -= '0';
 	// turn off curses options
 	clear();

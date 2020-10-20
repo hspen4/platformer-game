@@ -43,67 +43,76 @@ int main(void) {
         , &level_6, &level_7, &level_8, &level_9*/
     };
 
-    // choose level
-    int lvl = menu();
+    while (1) {
+        // choose level
+        int lvl = menu();
 
-    // load level
-    Scene *scene = levels[lvl - 1]();
-
-    GameState state = GameState::Playing;
-
-    while (state == GameState::Playing) {
-        // get keys pressed on each tick
-        std::vector<int> keys;
-        int key;
-        while ((key = getch()) != ERR) {
-            keys.push_back(key); // get non-blocking input if available
+        // check if user is done with game
+        if (lvl == KEY_BACKSPACE) {
+            break;
         }
 
-        state = scene->tick(keys);
+        // load level
+        Scene *scene = levels[lvl - 1]();
+
+        GameState state = GameState::Playing;
+
+        while (state == GameState::Playing) {
+            // get keys pressed on each tick
+            std::vector<int> keys;
+            int key;
+            while ((key = getch()) != ERR) {
+                keys.push_back(key); // get non-blocking input if available
+            }
+
+            state = scene->tick(keys);
+            refresh();
+        }
+
+        nodelay(stdscr, false);
+        echo();
+        move(1, 0);
+        clrtobot();
+        if (state == GameState::Won) {
+            mvprintw(1, 0, "You win! Enter a name for the leaderboard: ");
+        } else if (state == GameState::Dead) {
+            mvprintw(1, 0, "You died! Enter a name for the leaderboard: ");
+        }
         refresh();
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        char name[9];
+        scanw("%8s%*[^\n]", name);
+        // scanw("%*[^\n]%8s%*[^\n]",name);
+
+        // add score and name to board
+
+        clear();
+        Score playerSc(name, (int)(scene->get_score()));
+        scene->add_score(playerSc);
+
+        // get the scores and sort them
+
+        std::vector<Score> sb = scene->get_scoreboard().get_scores();
+        std::sort(sb.begin(), sb.end());
+        std::reverse(sb.begin(), sb.end());
+        scene->set_scores(sb);
+
+        // display the scores
+        int j = 0;
+        mvprintw(0,0,"Press Any Key to Exit");
+        mvprintw(0,(max_x/2) - 6, "Leaderboard");
+        mvprintw(2, (max_x/2) - 5, "Name");
+        mvprintw(2, (max_x/2) + 5, "Score");
+        for (auto i : sb) {
+            mvprintw(3 + j, (max_x / 2) - 5, i.get_name().c_str());
+            mvprintw(3 + j, (max_x / 2) + 5, std::to_string(i.get_points()).c_str());
+            j++;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        // wait for user to exit leaderboard
+        getch();
     }
-
-    nodelay(stdscr, false);
-    echo();
-    move(1, 0);
-    clrtobot();
-    if (state == GameState::Won) {
-        mvprintw(1, 0, "You win! Enter a name for the leaderboard: ");
-    } else if (state == GameState::Dead) {
-        mvprintw(1, 0, "You died! Enter a name for the leaderboard: ");
-    }
-    refresh();
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    char name[9];
-    scanw("%8s%*[^\n]", name);
-    // scanw("%*[^\n]%8s%*[^\n]",name);
-
-    // add score and name to board
-
-    clear();
-    Score playerSc(name, (int)(scene->get_score()));
-    scene->add_score(playerSc);
-
-    // get the scores and sort them
-
-    std::vector<Score> sb = scene->get_scoreboard().get_scores();
-    std::sort(sb.begin(), sb.end());
-    std::reverse(sb.begin(), sb.end());
-    scene->set_scores(sb);
-
-    // display the scores
-    int j = 0;
-    mvprintw(1, (max_x/2) - 5, "Name");
-    mvprintw(1, (max_x/2) + 5, "Score");
-    for (auto i : sb) {
-        mvprintw(2 + j, (max_x / 2) - 5, i.get_name().c_str());
-        mvprintw(2 + j, (max_x / 2) + 5, std::to_string(i.get_points()).c_str());
-        j++;
-    }
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    getch();
-
     endwin();
 
     return 0;
