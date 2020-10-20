@@ -1,4 +1,4 @@
-#include "assert.h"
+#include "harness.h"
 #include "../Player.h"
 #include "../CollisionObject.h"
 
@@ -15,17 +15,18 @@ public:
     };
 };
 
-void collisions() {
+void collisions(Harness *assert) {
+    assert->context("collisions");
     Player p('@', 0, 0);
     TestCollisionObject c('!', 5, 5);
 
-    assertm(c.check_collision(&p) == false, "not touching");
+    assert->eq(c.check_collision(&p), false, "not touching");
 
     p.set_x(5);
     p.set_y(5);
-    assertm(c.check_collision(&p) == true, "touching");
+    assert->eq(c.check_collision(&p), true, "touching");
 
-    assertm(c.has_collided == false, "before calling collision cb");
+    assert->eq(c.has_collided, false, "before calling collision cb");
     c.collide(&p);
-    assertm(c.has_collided == true, "after calling collision cb");
+    assert->eq(c.has_collided, true, "after calling collision cb");
 }

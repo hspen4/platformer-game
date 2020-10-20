@@ -1,9 +1,11 @@
 #include "../PhysicsObject.h"
 #include "../Floor.h"
-#include "assert.h"
+#include "harness.h"
 #include <iostream>
 
-void floors() {
+void floors(Harness *assert) {
+    assert->context("floors");
+
     Floor f(0, 10, 5);
     PhysicsObject p('@', 9, 2); // two tiles above the floor
 
@@ -11,9 +13,9 @@ void floors() {
         p.tick();
         f.collide(&p);
     }
-    assertm(p.get_render_y() == 4, "landed on floor");
-    assertm(p.grounded() == true, "landed on floor");
-    
+    assert->eq(p.get_render_y(), 4, "position on floor");
+    assert->eq(p.grounded(), true, "grounded on floor");
+
     // move p to the right, they should start falling
     p.set_dy(-1);
     p.set_x(15);
@@ -21,6 +23,6 @@ void floors() {
         p.tick();
         f.collide(&p);
     }
-    assertm(p.get_y() > 4, "falling after walking off a platform");
-    assertm(p.grounded() == false, "falling after walking off a platform");
+    assert->gt(p.get_y(), 4.0, "position falling after walking off a platform");
+    assert->eq(p.grounded(), false, "grounded falling after walking off a platform");
 }

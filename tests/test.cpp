@@ -9,13 +9,12 @@ using namespace std;
 int max_y = 1000, max_x = 1000;
 
 int main() {
-    cout << "running physics tests..." << endl;
-    physics();
-    cout << "running floors tests..." << endl;
-    floors();
-    cout << "running collisions tests..." << endl;
-    collisions();
+    Harness h;
 
-    cout << "all tests passed" << endl;
+    physics(&h);
+    floors(&h);
+    collisions(&h);
+
+    h.results();
     return 0;
 }
