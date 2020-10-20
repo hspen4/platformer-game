@@ -1,20 +1,20 @@
-#include "Scene.h"
-#include "RenderedObject.h"
-#include "PhysicsObject.h"
-#include "Score.h"
 #include "GameState.h"
-#include <iostream>
-#include <vector>
-#include <cstdlib>
-#include <ncurses.h>
-#include <unistd.h>
-#include <thread>
-#include <chrono>
+#include "PhysicsObject.h"
+#include "RenderedObject.h"
+#include "Scene.h"
+#include "Score.h"
 #include <algorithm>
+#include <chrono>
+#include <cstdlib>
+#include <iostream>
+#include <ncurses.h>
+#include <thread>
+#include <unistd.h>
+#include <vector>
 
 int max_y, max_x;
 
-int main (void) {
+int main(void) {
     // set up curses options
     initscr();
     cbreak();
@@ -29,9 +29,9 @@ int main (void) {
     Scene scene("scores/level_1.txt");
 
     scene.new_player('@', 1, 5);
-    scene.new_collectible('!', 14, max_y-4);
-    scene.new_collectible('!', 103, max_y-4);
-    scene.new_end('*', 1, max_y-10);
+    scene.new_collectible('!', 14, max_y - 4);
+    scene.new_collectible('!', 103, max_y - 4);
+    scene.new_end('*', 1, max_y - 10);
 
     scene.new_floor(0, max_x, max_y - 1);
 
@@ -48,7 +48,7 @@ int main (void) {
 
     while (state == GameState::Playing) {
         // get keys pressed on each tick
-        std::vector <int> keys;
+        std::vector<int> keys;
         int key;
         while ((key = getch()) != ERR) {
             keys.push_back(key); // get non-blocking input if available
@@ -58,20 +58,20 @@ int main (void) {
         refresh();
     }
 
-    nodelay(stdscr,false);
+    nodelay(stdscr, false);
     echo();
-    move(1,0);
+    move(1, 0);
     clrtobot();
     if (state == GameState::Won) {
-        mvprintw(1,0,"You win! Enter a name for the leaderboard: ");
+        mvprintw(1, 0, "You win! Enter a name for the leaderboard: ");
     } else if (state == GameState::Dead) {
-        mvprintw(1,0,"You died! Enter a name for the leaderboard: ");
+        mvprintw(1, 0, "You died! Enter a name for the leaderboard: ");
     }
     refresh();
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     char name[9];
-    scanw("%8s%*[^\n]",name);
-    //scanw("%*[^\n]%8s%*[^\n]",name);
+    scanw("%8s%*[^\n]", name);
+    // scanw("%*[^\n]%8s%*[^\n]",name);
 
     // add score and name to board
 

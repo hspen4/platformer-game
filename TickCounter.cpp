@@ -9,4 +9,3 @@ bool TickCounter::check() {
     }
     return false;
 }
-

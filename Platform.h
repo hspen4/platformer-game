@@ -3,10 +3,6 @@
 
 #include "CollisionObject.h"
 
-class Platform : public CollisionObject {
-
-
-
-};
+class Platform : public CollisionObject {};
 
 #endif

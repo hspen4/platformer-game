@@ -6,15 +6,16 @@
 
 class Scoreboard {
 public:
-	Scoreboard(std::string file);
-	~Scoreboard();
-	void add_score(Score);
-	std::vector <Score> get_scores();
-	void set_scores(std::vector <Score>);
+    Scoreboard(std::string file);
+    ~Scoreboard();
+    void add_score(Score);
+    std::vector<Score> get_scores();
+    void set_scores(std::vector<Score>);
+
 private:
-	std::string file;
-	std::vector <Score> scores;
-	int entries;
+    std::string file;
+    std::vector<Score> scores;
+    int entries;
 };
 
 #endif

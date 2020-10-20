@@ -19,9 +19,10 @@ public:
     int get_score();
     void set_state(GameState);
     GameState get_state();
+
 private:
-    void input(); // parse user input
-    std::vector <int> keys; // hold user input
+    void input();          // parse user input
+    std::vector<int> keys; // hold user input
     int score;
     bool playing;
     GameState cur_state;

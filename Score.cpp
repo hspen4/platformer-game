@@ -2,15 +2,15 @@
 
 // constructor
 
-Score::Score(std::string name, int points) 
-	: points(points)
-	, name(name)
+Score::Score(std::string name, int points)
+    : points(points)
+    , name(name)
 {}
 
 // overload less than operator for sorting
 
-bool Score::operator < (const Score& obj) const {
-	return points < obj.points;
+bool Score::operator<(const Score &obj) const {
+    return points < obj.points;
 }
 
 // getters and setters

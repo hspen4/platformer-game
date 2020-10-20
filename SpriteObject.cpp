@@ -6,14 +6,12 @@ SpriteObject::SpriteObject(char sprite, double x, double y)
     , y(y)
 {
 
-	this->sprite[0] = sprite;
-	this->sprite[1] = '\0';
-
+    this->sprite[0] = sprite;
+    this->sprite[1] = '\0';
 }
 
-// TODO - ncurses
 void SpriteObject::render() {
-	mvprintw(y, x, sprite);
+    mvprintw(y, x, sprite);
 }
 
 double SpriteObject::get_x() { return x; }

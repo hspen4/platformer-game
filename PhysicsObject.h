@@ -18,17 +18,17 @@ public:
     double get_dx();
     double get_dy();
     bool collide(Player *) override;
+
 protected:
     // old location for cleaning
     int old_y, old_x;
+
 private:
     // apply momentum from arrow keys
     double dy;
     double dx;
-    bool on_ground; // check if object on ground
+    bool on_ground;    // check if object on ground
     bool check_tick(); // returns true if we should update
-
-
 };
 
 #endif

@@ -8,8 +8,9 @@ Floor::Floor(int left_x, int right_x, int y)
 {}
 
 void Floor::collide(PhysicsObject *obj) {
-    if (obj->get_render_y() == y
-        && obj->get_render_x() >= left_x && obj->get_render_x() <= right_x
+    if (obj->get_render_y() == y &&
+        obj->get_render_x() >= left_x &&
+        obj->get_render_x() <= right_x
     ) {
         if (obj->get_dy() >= 0) {
             // falling object - push it up and reset momentum

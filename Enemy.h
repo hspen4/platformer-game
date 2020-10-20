@@ -10,6 +10,7 @@ public:
     Enemy(char sprite, double x, double y);
     void tick() override;
     bool collide(Player *p) override;
+
 private:
     TickCounter movement_timer;
     int movement_direction;

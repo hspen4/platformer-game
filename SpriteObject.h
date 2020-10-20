@@ -8,9 +8,11 @@
 class SpriteObject : public RenderedObject {
 private:
     char sprite[2];
+
 protected:
     double x;
     double y;
+
 public:
     SpriteObject(char sprite, double x = 0, double y = 0);
     virtual ~SpriteObject() = default;

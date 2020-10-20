@@ -1,8 +1,8 @@
 #include "Enemy.h"
-#include "Player.h"
-#include "PhysicsObject.h"
-#include "TickCounter.h"
 #include "GameState.h"
+#include "PhysicsObject.h"
+#include "Player.h"
+#include "TickCounter.h"
 #include <cstdlib>
 
 extern int max_x, max_y;
@@ -38,4 +38,3 @@ bool Enemy::collide(Player *p) {
     p->set_state(GameState::Dead);
     return true;
 }
-

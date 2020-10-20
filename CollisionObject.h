@@ -4,7 +4,8 @@
 #include "SpriteObject.h"
 
 // CollisionObject needs to know about the Player class, but we can't include
-// the Player classdef before defining CollisionObject because it inherits from it
+// the Player classdef before defining CollisionObject because it inherits from
+// it
 // forward declare the Player class instead so that this works
 class Player;
 

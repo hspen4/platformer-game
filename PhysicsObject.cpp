@@ -1,8 +1,8 @@
 #include "PhysicsObject.h"
 #include "TickCounter.h"
+#include <algorithm>
 #include <ncurses.h>
 #include <unistd.h>
-#include <algorithm>
 
 #include <iostream>
 

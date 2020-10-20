@@ -3,10 +3,6 @@
 
 #include "RenderedObject.h"
 
-class Background : public RenderedObject {
-
-
-
-};
+class Background : public RenderedObject {};
 
 #endif
