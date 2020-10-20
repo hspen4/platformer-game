@@ -3,6 +3,8 @@
 #include "physics.cpp"
 #include "floors.cpp"
 #include "collisions.cpp"
+#include "tick_counter.cpp"
+#include "end.cpp"
 
 using namespace std;
 
@@ -14,6 +16,8 @@ int main() {
     physics(&h);
     floors(&h);
     collisions(&h);
+    tick_counter(&h);
+    end(&h);
 
     h.results();
     return 0;
