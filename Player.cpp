@@ -22,15 +22,19 @@ void Player::input() {
     for (auto key : keys) {
         switch (key) {
         case 'W':
+        case 'w':
+        case ' ':
         case KEY_UP:
             if (grounded()) {
                 set_dy(-8);
             }
             break;
+        case 'a':
         case 'A':
         case KEY_LEFT:
             set_dx(-10);
             break;
+        case 'd':
         case 'D':
         case KEY_RIGHT:
             set_dx(10);
