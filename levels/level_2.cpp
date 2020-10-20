@@ -19,7 +19,7 @@ Scene *level_2() {
     scene->new_collectible('!', 150, max_y - 2);
     scene->new_collectible('!', 85, max_y - 20);
     scene->new_collectible('!', 70, max_y - 16);
-    scene->new_end('*', 177, max_y - 21);
+    scene->new_end('*', 95, max_y - 24);
 
     scene->new_floor(0, max_x, max_y - 1);
 
@@ -30,11 +30,6 @@ Scene *level_2() {
     scene->new_floor(81, 90, max_y - 19);
     scene->new_floor(91, 100, max_y - 23);
 
-    scene->new_floor(175, 180, max_y - 4);
-    scene->new_floor(180, 185, max_y - 8);
-    scene->new_floor(175, 180, max_y - 12);
-    scene->new_floor(180, 185, max_y - 16);
-    scene->new_floor(175, 180, max_y - 20);
 
     scene->new_enemy('M', 100, max_y - 2);
     scene->new_enemy('M', 50, max_y - 2);
