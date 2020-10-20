@@ -17,7 +17,24 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
+
 Scene::Scene(std::string file) : player(nullptr), sb(file) {}
+
+Scene::Scene(Scene &&other) : sb("") {
+    swap(*this, other);
+}
+
+Scene& Scene::operator=(Scene &&other) {
+    swap(*this, other);
+    return *this;
+}
+
+void swap(Scene &a, Scene &b) {
+    std::swap(a.objects, b.objects);
+    std::swap(a.collision_objects, b.collision_objects);
+    std::swap(a.physics_objects, b.physics_objects);
+    std::swap(a.floors, b.floors);
+}
 Scene::~Scene() {
     for (auto obj : objects) delete obj;
     objects.clear();

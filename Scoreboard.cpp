@@ -5,6 +5,8 @@
 // set up scoreboard, reading from existing file if available
 
 Scoreboard::Scoreboard(std::string file) : file(file) {
+    entries = 0;
+    if (!file.length()) return;
     // set up file reading
     std::ifstream ifs;
     ifs.open(file);
@@ -14,7 +16,6 @@ Scoreboard::Scoreboard(std::string file) : file(file) {
         ifs.close();
         std::ofstream ofs;
         ofs.open(file);
-        entries = 0;
         ofs << entries << '\n';
         return;
     }
@@ -38,6 +39,7 @@ void Scoreboard::add_score(Score sc) {
 
 // destructor
 Scoreboard::~Scoreboard() {
+    if (!file.length()) return;
     // clear existing file
     std::ofstream ofs;
     ofs.open(file);

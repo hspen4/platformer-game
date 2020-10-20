@@ -33,7 +33,9 @@ public:
     // this holds raw pointers, so copying is a Mistake
     Scene(const Scene &other) = delete;          // copy ctor
     void operator=(const Scene &other) = delete; // copy assignment
-
+    Scene(Scene &&other);
+    Scene& operator=(Scene &&other);         // move assign
+    friend void swap(Scene &a, Scene &b);
 
     void new_floor(int left_x, int right_x, int y);
     void new_player(char sprite, double x = 0, double y = 0);
