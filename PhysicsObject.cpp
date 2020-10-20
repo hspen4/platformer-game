@@ -35,6 +35,8 @@ PhysicsObject::PhysicsObject(char sprite, float x, float y)
     , dy(0)
     , dx(0)
     , on_ground(false)
+    , orig_x(x)
+    , orig_y(y)
 {}
 
 // render object and remove from previous location

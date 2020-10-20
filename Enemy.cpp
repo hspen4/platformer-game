@@ -34,7 +34,7 @@ void Enemy::tick() {
 }
 
 bool Enemy::collide(Player *p) {
-    // kill player
-    p->set_state(GameState::Dead);
-    return true;
+    // respawn player
+    p->respawn();
+    return false;
 }

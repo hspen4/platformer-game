@@ -22,6 +22,8 @@ public:
 protected:
     // old location for cleaning
     int old_y, old_x;
+    // original spawn location
+    int orig_y, orig_x;
 
 private:
     // apply momentum from arrow keys

@@ -57,6 +57,15 @@ void Player::tick() {
     mvprintw(0, 0, "Score: %d", (int)get_score());
 }
 
+// respawn at original location on death
+void Player::respawn() {
+    set_score(get_score() - 50);
+    set_dx(0);
+    set_dy(0);
+    y = orig_y;
+    x = orig_x;
+}
+
 // set keys
 void Player::set_keys(std::vector<int> newKeys) { keys = newKeys; }
 

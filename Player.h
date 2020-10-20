@@ -19,6 +19,7 @@ public:
     float get_score();
     void set_state(GameState);
     GameState get_state();
+    void respawn();
 
 private:
     void input();          // parse user input
