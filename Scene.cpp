@@ -22,6 +22,7 @@ Scene::~Scene() {
     for (auto obj : objects) delete obj;
     objects.clear();
     physics_objects.clear();
+    collision_objects.clear();
 }
 
 void Scene::new_sprite(char sprite, float x, float y) {
@@ -89,7 +90,7 @@ GameState Scene::tick(std::vector <int> keys) {
 
    for (auto obj : objects) obj->render();
    if (player) player->render();
-   return (player->get_state());
+   return player ? player->get_state() : GameState::Playing;
 }
 
 void Scene::remove_object(RenderedObject *obj) {

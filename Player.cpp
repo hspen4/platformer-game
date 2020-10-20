@@ -11,7 +11,7 @@ extern int max_x, max_y;
 Player::Player(char sprite, float x, float y)
     : PhysicsObject::PhysicsObject(sprite, x, y)
     , score(0)
-    , playing(true)
+    , cur_state(GameState::Playing)
 {}
 
 // gets user input
