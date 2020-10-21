@@ -19,8 +19,8 @@ Scene level_2();
 Scene level_3();
 Scene level_4();
 Scene level_5();
-/*Scene level_6();
-Scene level_7();
+Scene level_6();
+/*Scene level_7();
 Scene level_8();
 Scene level_9();*/
 
@@ -38,8 +38,8 @@ int main(void) {
 
     // array of pointers to functions that return levels
     Scene (*levels[])(void) = { &level_1,
-        &level_2, &level_3, &level_4, &level_5 /*
-        , &level_6, &level_7, &level_8, &level_9*/
+        &level_2, &level_3, &level_4, &level_5 
+        , &level_6, /*&level_7, &level_8, &level_9*/
     };
     int num_levels = sizeof(levels) / sizeof(levels[0]);
 
