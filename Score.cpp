@@ -5,7 +5,9 @@
 Score::Score(std::string name, int points)
     : points(points)
     , name(name)
-{}
+{
+    if (!name.length()) this->name = "[blank]";
+}
 
 // overload less than operator for sorting
 bool Score::operator<(const Score &obj) const {

@@ -55,6 +55,9 @@ void Player::tick() {
     if (y >= max_y) {
         respawn();
     }
+    // stop the player from moving off the sides of the level
+    if (x < 0) x = 0;
+    if (x > max_x) x = max_x;
     // re-print score
     for (int i = 0; i <= max_x; i++) {
         mvprintw(0, i, " ");
