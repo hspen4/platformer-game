@@ -11,7 +11,7 @@ public:
     void tick() override;
 
 private:
-    TickCounter movement_timer;
+    TickCounter movement_timer; // track when to move across
     int movement_direction;
 };
 

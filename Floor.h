@@ -14,7 +14,7 @@ private:
     int y;
 
 public:
-    Floor(int left_x, int right_x, int y);
+    Floor(int left_x, int right_x, int y); // more than one character long, unlike sprites
     void collide(PhysicsObject *obj);
     void render() override;
 };

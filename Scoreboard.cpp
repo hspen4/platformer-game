@@ -40,7 +40,7 @@ void Scoreboard::add_score(Score sc) {
 // destructor
 Scoreboard::~Scoreboard() {
     if (!file.length()) return;
-    // clear existing file
+    // opening output stream of existing file will clear it, allowing us to read in updated list of scores from ram
     std::ofstream ofs;
     ofs.open(file);
 
@@ -56,5 +56,6 @@ Scoreboard::~Scoreboard() {
     ofs.close();
 }
 
+// getters and setters
 std::vector<Score> Scoreboard::get_scores() { return scores; }
 void Scoreboard::set_scores(std::vector<Score> s) { scores = s; }

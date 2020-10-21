@@ -37,6 +37,7 @@ public:
     Scene& operator=(Scene &&other);         // move assign
     friend void swap(Scene &a, Scene &b);
 
+    // calls the constructors for different objects and adds them to a vector in the scene
     void new_floor(int left_x, int right_x, int y);
     void new_player(char sprite, double x = 0, double y = 0);
     template <class T> void new_collision(char sprite, double x, double y);
@@ -48,7 +49,11 @@ public:
     void new_enemy_jumper(char sprite, double x = 0, double y = 0);
 
     void new_jumper(char sprite, double x, double y);
+
+    // ticks the game
     GameState tick(std::vector<int>);
+
+    // manipulates score and scoreboard using the player object
     Scoreboard get_scoreboard();
     float get_score();
     void add_score(Score);

@@ -7,10 +7,12 @@
 
 extern int max_x, max_y;
 
+// enemy type that walks across platforms
+
 EnemyWalker::EnemyWalker(char sprite, double x, double y)
     : Enemy(sprite, x, y)
-    , movement_timer(30)
-    , movement_direction(-1)
+    , movement_timer(30) // move every 30 ticks
+    , movement_direction(-1) // tracks whether we are moving left or right
 {}
 
 void EnemyWalker::tick() {

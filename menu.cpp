@@ -13,6 +13,8 @@
 
 extern int max_x, max_y;
 
+// displays the menu to choose a level
+
 int menu(void) {
 	noecho();
 	nodelay(stdscr,false);
@@ -21,11 +23,14 @@ int menu(void) {
 	mvprintw(0,0,"Backspace to Exit");
 	mvprintw(max_y / 2, (max_x / 2) - 10, "Choose a level (1-9)");
 	int lvl;
+	// check for valid level choice or exit
 	while ((lvl = getch()) < '0' || lvl > '9') {
 		if (lvl == KEY_BACKSPACE) {
+			// done with game
 			return lvl;
 		}
 	}
+	// get integer value of level
 	lvl -= '0';
 	// turn off curses options
 	clear();

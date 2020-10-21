@@ -1,6 +1,9 @@
 #include "SpriteObject.h"
 #include <ncurses.h>
 
+// object representing all single character sprites that need to be rendered
+
+// pass location to spawn
 SpriteObject::SpriteObject(char sprite, double x, double y)
     : x(x)
     , y(y)
@@ -10,10 +13,12 @@ SpriteObject::SpriteObject(char sprite, double x, double y)
     this->sprite[1] = '\0';
 }
 
+// called when object spawned or moved
 void SpriteObject::render() {
     mvprintw(y, x, sprite);
 }
 
+// getters and setters
 double SpriteObject::get_x() { return x; }
 double SpriteObject::get_y() { return y; }
 

@@ -6,12 +6,14 @@
 
 #include <iostream>
 
-// FIXME this is pretty terrible
+// all objects that need physics applied
+
 extern int max_x, max_y;
 
 const double tick_dt = 0.016;
 const double gravity = 0.15;
 
+// applies momentum and other physics every tick
 void PhysicsObject::tick() {
     old_x = x;
     old_y = y;
@@ -29,6 +31,7 @@ void PhysicsObject::tick() {
     }
 }
 
+// constructor
 PhysicsObject::PhysicsObject(char sprite, float x, float y)
     : CollisionObject::CollisionObject(sprite, x, y)
     , orig_y(y)
@@ -44,8 +47,11 @@ void PhysicsObject::render() {
     SpriteObject::render();
 }
 
+// re-defined in subclasses
+
 bool PhysicsObject::collide(Player *p) { return true; }
 
+// getters and setters 
 void PhysicsObject::set_dx(double _dx) { dx = _dx; }
 void PhysicsObject::set_dy(double _dy) { dy = _dy; }
 

@@ -7,6 +7,8 @@
 
 extern int max_x, max_y;
 
+// class representing the player's sprite
+
 // ctor
 Player::Player(char sprite, float x, float y)
     : PhysicsObject::PhysicsObject(sprite, x, y)

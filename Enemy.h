@@ -7,7 +7,7 @@
 // enemies all kill the player on contact
 class Enemy : public PhysicsObject {
 public:
-    using PhysicsObject::PhysicsObject;
+    using PhysicsObject::PhysicsObject; // inherit ctors
     bool collide(Player *p) override;
 };
 

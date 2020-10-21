@@ -4,6 +4,8 @@
 #include "Score.h"
 #include <vector>
 
+// stores score info
+
 class Scoreboard {
 public:
     Scoreboard(std::string file);
@@ -13,9 +15,9 @@ public:
     void set_scores(std::vector<Score>);
 
 private:
-    std::string file;
-    std::vector<Score> scores;
-    int entries;
+    std::string file; // file to be read and write to
+    std::vector<Score> scores; // held in ram during game
+    int entries; // number of scores
 };
 
 #endif

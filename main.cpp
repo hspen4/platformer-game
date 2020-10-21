@@ -43,6 +43,7 @@ int main(void) {
     };
     int num_levels = sizeof(levels) / sizeof(levels[0]);
 
+    // iterate until user exits game
     while (1) {
         // choose level
         int lvl;
@@ -58,8 +59,10 @@ int main(void) {
         // load level
         Scene scene = levels[lvl - 1]();
 
+        // default gamestate
         GameState state = GameState::Playing;
 
+        // check that the game hasn't ended
         while (state == GameState::Playing) {
             // get keys pressed on each tick
             std::vector<int> keys;
@@ -74,32 +77,28 @@ int main(void) {
 
         nodelay(stdscr, false);
         echo();
+        // clear screen outside of score
         move(1, 0);
         clrtobot();
         if (state == GameState::Won) {
             mvprintw(1, 0, "You win! Enter a name for the leaderboard: ");
         } else if (state == GameState::Dead) {
+            // should be unused, player respawns instead
             mvprintw(1, 0, "You died! Enter a name for the leaderboard: ");
         }
         refresh();
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500)); // give them some time in case they have a key held down
         char name[9];
-        scanw("%8s%*[^\n]", name);
-        // scanw("%*[^\n]%8s%*[^\n]",name);
-
+        scanw("%8s%*[^\n]", name); // limit the characters
         // add score and name to board
-
         clear();
         Score playerSc(name, static_cast<int>(scene.get_score()));
         scene.add_score(playerSc);
-
         // get the scores and sort them
-
         std::vector<Score> sb = scene.get_scoreboard().get_scores();
         std::sort(sb.begin(), sb.end());
         std::reverse(sb.begin(), sb.end());
         scene.set_scores(sb);
-
         // display the scores
         int j = 0;
         mvprintw(0,0,"Press Any Key to Exit");
@@ -111,7 +110,7 @@ int main(void) {
             mvprintw(3 + j, (max_x / 2) + 2, std::to_string(i.get_points()).c_str());
             j++;
         }
-
+        // give user some time to read
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
         // wait for user to exit leaderboard
         getch();

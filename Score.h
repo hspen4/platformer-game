@@ -3,6 +3,8 @@
 
 #include <string>
 
+// scores that make up a scoreboard
+
 class Score {
 public:
     Score(std::string, int);
@@ -10,6 +12,7 @@ public:
     std::string get_name();
     void set_points(int);
     void set_name(std::string);
+    // for use in std::sort
     bool operator<(const Score &obj) const;
 
 private:
