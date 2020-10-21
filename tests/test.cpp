@@ -6,6 +6,7 @@
 #include "tick_counter.cpp"
 #include "end.cpp"
 #include "enemy.cpp"
+#include "menu.cpp"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ int main() {
     tick_counter(&h);
     end(&h);
     enemy(&h);
+    menu(&h);
 
     h.results();
     return 0;
