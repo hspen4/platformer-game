@@ -13,30 +13,22 @@ Scene level_6() {
     scene.new_floor(13, 13, max_y - 8);
     scene.new_floor(17, 17, max_y - 11);
     scene.new_floor(21, 21, max_y - 14);
-
-    /*scene.new_floor(0, 10, max_y - 9);
-    scene.new_floor(30, 50, max_y - 9);
-    scene.new_floor(70, 90, max_y - 9);
-    scene.new_floor(110, 130, max_y - 9);
-    scene.new_floor(150, 160, max_y - 9);
-
-    scene.new_floor(19, 21, max_y - 5);
-    scene.new_floor(59, 61, max_y - 5);
-    scene.new_floor(99, 101, max_y - 5);
-    scene.new_floor(139, 141, max_y - 5);
-
-    scene.new_collectible('!', 5, max_y - 10);
-    scene.new_collectible('!', 35, max_y - 10);
-    scene.new_collectible('!', 45, max_y - 10);
-    scene.new_collectible('!', 75, max_y - 2);
-    scene.new_collectible('!', 85, max_y - 2);
-    scene.new_collectible('!', 115, max_y - 10);
-    scene.new_collectible('!', 125, max_y - 10);
-    scene.new_collectible('!', 155, max_y - 2);*/
+    scene.new_floor(12, 20, max_y - 3);
+    scene.new_floor(25, 25, max_y - 5);
+    scene.new_floor(29, 40, max_y - 9);
+    scene.new_floor(44, 56, max_y - 13);
+    scene.new_floor(47, 47, max_y - 16);
+    scene.new_floor(24, 44, max_y - 19);
+ 
+    scene.new_collectible('!', 25, max_y - 6);
+    scene.new_collectible('!', 13, max_y - 9);
 
     scene.new_enemy_jumper('|', 9, max_y - 6);
     //  scene.new_enemy_jumper('|', 13, max_y - 9);
     scene.new_enemy_jumper('|', 17, max_y - 12);
+    scene.new_enemy_walker('M', 28, max_y - 20);
+    scene.new_enemy_walker('M', 50, max_y - 14);
+    scene.new_enemy_walker('M', 16, max_y - 4);
 
     return scene;
 }
