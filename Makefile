@@ -1,4 +1,4 @@
-OBJS=Scene.o TickCounter.o RenderedObject.o SpriteObject.o Background.o CollisionObject.o Floor.o Collectible.o Platform.o PhysicsObject.o Player.o Enemy.o EnemyWalker.o EnemyJumper.o End.o Scoreboard.o Score.o
+OBJS=Scene.o TickCounter.o RenderedObject.o SpriteObject.o CollisionObject.o Floor.o Collectible.o PhysicsObject.o Player.o Enemy.o EnemyWalker.o EnemyJumper.o End.o Scoreboard.o Score.o
 # .objs/whatever.o
 OBJSPATHS=$(addprefix .objs/,$(OBJS))
 
@@ -10,7 +10,7 @@ LEVELS=$(wildcard levels/*)
 LEVELSOBJS=$(addprefix .objs/,$(subst .cpp,.o,$(LEVELS)))
 
 # clang doesn't support unused-but-set-variable
-FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option -Wno-sign-compare -ggdb
+FLAGS=-std=c++11 -Wall -Wno-unknown-warning-option -Wno-sign-compare -ggdb
 
 INCLUDES=-lncurses
 
