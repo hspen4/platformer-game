@@ -1,5 +1,8 @@
 #include "harness.h"
 #include "../Enemy.h"
+#include "../EnemyWalker.h"
+#include "../EnemyJumper.h"
+#include "../Floor.h"
 #include "../Player.h"
 
 void enemy(Harness *assert) {
@@ -18,4 +21,29 @@ void enemy(Harness *assert) {
     assert->lt(p.get_score(), original_score, "reduced score after touching an enemy");
     assert->eq(p.get_x(), 0.0, "reset position after touching an enemy");
     assert->eq(p.get_y(), 0.0);
+
+    assert->context("walker enemy");
+    EnemyWalker w('M', 5, 6);
+    // create a floor underneath the walker
+    Floor f(2, 7, 6);
+
+    // 100 ticks
+    for (int i = 0; i < 60 * 100; i++) {
+        w.tick();
+        w.set_grounded(false);
+        f.collide(&w);
+    }
+    assert->lt(w.get_y(), 6, "walker hasn't walked off edge");
+
+    assert->context("jumper enemy");
+    EnemyJumper j('|', 5, 6);
+    bool jumped = false;
+    for (int i = 0; i < 60 * 100; i++) {
+        j.tick();
+        j.set_grounded(false);
+        f.collide(&j);
+
+        if (j.get_y() < 4) jumped = true;
+    }
+    assert->eq(jumped, true, "jumper has jumped");
 }
