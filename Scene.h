@@ -35,7 +35,6 @@ public:
     void operator=(const Scene &other) = delete; // copy assignment
     Scene(Scene &&other);
     Scene& operator=(Scene &&other);         // move assign
-    friend void swap(Scene &a, Scene &b);
 
     // calls the constructors for different objects and adds them to a vector in the scene
     void new_floor(int left_x, int right_x, int y);

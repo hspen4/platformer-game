@@ -25,21 +25,13 @@ Scene::Scene(std::string file) : player(nullptr), sb(file) {}
 
 // implement copy constructor to pass scenes between functions
 Scene::Scene(Scene &&other) : sb("") {
-    swap(*this, other);
+    std::swap(*this, other);
 }
 
 // implement assignment operator for same reason
 Scene& Scene::operator=(Scene &&other) {
-    swap(*this, other);
+    std::swap(*this, other);
     return *this;
-}
-
-// moves all objects over to another scene instance
-void swap(Scene &a, Scene &b) {
-    std::swap(a.objects, b.objects);
-    std::swap(a.collision_objects, b.collision_objects);
-    std::swap(a.physics_objects, b.physics_objects);
-    std::swap(a.floors, b.floors);
 }
 
 // erases all elements from object vectors when the scene is no longer needed
@@ -122,11 +114,11 @@ GameState Scene::tick(std::vector<int> keys) {
         }
         for (auto obj : to_remove) remove_object(obj);
     }
-    
+
     // update object locations by rendering them again
     for (auto obj : objects) obj->render();
     if (player) player->render();
-    
+
     // check if game is still going
     return player ? player->get_state() : GameState::Playing;
 }
