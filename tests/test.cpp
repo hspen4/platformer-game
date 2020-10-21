@@ -5,6 +5,7 @@
 #include "collisions.cpp"
 #include "tick_counter.cpp"
 #include "end.cpp"
+#include "enemy.cpp"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main() {
     collisions(&h);
     tick_counter(&h);
     end(&h);
+    enemy(&h);
 
     h.results();
     return 0;
