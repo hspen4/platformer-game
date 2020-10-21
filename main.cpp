@@ -13,7 +13,7 @@
 #include <vector>
 
 int max_y, max_x;
-int menu();
+int menu(int);
 Scene level_1();
 Scene level_2();
 Scene level_3();
@@ -46,10 +46,7 @@ int main(void) {
     // iterate until user exits game
     while (1) {
         // choose level
-        int lvl;
-        do {
-            lvl = menu();
-        } while (lvl > num_levels && lvl != KEY_BACKSPACE);
+        int lvl = menu(num_levels);
 
         // check if user is done with game
         if (lvl == KEY_BACKSPACE) {

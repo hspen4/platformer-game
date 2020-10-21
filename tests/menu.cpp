@@ -15,7 +15,7 @@ void menu(Harness *assert) {
 	assert->eq(sb2->get_scores().size(), 1, "didn't add score");
 	delete sb2;
 	std::ofstream ofs;
-	ofs.open("test_sb.txt", std::ios_base::trunc); // delete file after
+	ofs.open("scores/test_sb.txt", std::ios_base::trunc); // delete file after
 
 
 }
