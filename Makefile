@@ -10,7 +10,7 @@ LEVELS=$(wildcard levels/*)
 LEVELSOBJS=$(addprefix .objs/,$(subst .cpp,.o,$(LEVELS)))
 
 # clang doesn't support unused-but-set-variable
-FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option -ggdb
+FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option -Wno-sign-compare -ggdb
 
 INCLUDES=-lncurses
 
