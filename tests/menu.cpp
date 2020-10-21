@@ -12,7 +12,7 @@ void menu(Harness *assert) {
 	sb->add_score(sc);
 	delete sb; // call destructor to push to file
 	Scoreboard *sb2 = new Scoreboard("scores/test_sb.txt");
-	assert->eq((int)(sb2->get_scores().size()), 1, "didn't add score");
+	assert->eq(sb2->get_scores().size(), 1, "didn't add score");
 	delete sb2;
 	std::ofstream ofs;
 	ofs.open("test_sb.txt", std::ios_base::trunc); // delete file after

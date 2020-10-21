@@ -14,8 +14,8 @@ private:
     std::ostream& report() {
         return std::cout << "test failed! " << cur_context << " " << cur_test << " - ";
     }
-    template <typename T, typename F>
-    void test(T a, T b, F lambda, std::string message, std::string test) {
+    template <typename T_A, typename T_B, typename F>
+    void test(T_A a, T_B b, F lambda, std::string message, std::string test) {
         if (test.length()) cur_test = test;
         total_run++;
         if (lambda(a, b)) {
@@ -35,17 +35,17 @@ public:
         std::cout << "running " << ctx << " tests..." << std::endl;
     }
 
-    template <typename T>
-    void eq(T a, T b, std::string name = "") {
-        test(a, b, [](T a, T b) { return a == b; }, "==", name);
+    template <typename A, typename B>
+    void eq(A a, B b, std::string name = "") {
+        test(a, b, [](A a, B b) { return a == b; }, "==", name);
     }
-    template <typename T>
-    void lt(T a, T b, std::string name = "") {
-        test(a, b, [](T a, T b) { return a < b; }, "<", name);
+    template <typename A, typename B>
+    void lt(A a, B b, std::string name = "") {
+        test(a, b, [](A a, B b) { return a < b; }, "<", name);
     }
-    template <typename T>
-    void gt(T a, T b, std::string name = "") {
-        test(a, b, [](T a, T b) { return a > b; }, ">", name);
+    template <typename A, typename B>
+    void gt(A a, B b, std::string name = "") {
+        test(a, b, [](A a, B b) { return a > b; }, ">", name);
     }
 };
 
