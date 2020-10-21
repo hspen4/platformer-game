@@ -14,14 +14,16 @@ FLAGS=-std=c++11 -Wall -Wno-unused-but-set-variable -Wno-unknown-warning-option 
 
 INCLUDES=-lncurses
 
-all: game test
-	./test
+all: game runtest
 
 game: $(OBJSPATHS) $(FUNCS) $(LEVELSOBJS)
 	$(CXX) $(FLAGS) -o game $(OBJSPATHS) $(FUNCS) $(LEVELSOBJS) $(INCLUDES)
 
 test: $(OBJSPATHS) tests/*
 	$(CXX) $(FLAGS) -o test $(OBJSPATHS) tests/test.cpp $(INCLUDES)
+
+runtest: test tests/input.txt
+	./test < tests/input.txt
 
 # build object files into their own directory
 .objs/%.o: %.cpp

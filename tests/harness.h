@@ -40,6 +40,10 @@ public:
         test(a, b, [](A a, B b) { return a == b; }, "==", name);
     }
     template <typename A, typename B>
+    void neq(A a, B b, std::string name = "") {
+        test(a, b, [](A a, B b) { return a != b; }, "!=", name);
+    }
+    template <typename A, typename B>
     void lt(A a, B b, std::string name = "") {
         test(a, b, [](A a, B b) { return a < b; }, "<", name);
     }
